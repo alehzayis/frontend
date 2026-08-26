@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+:root {
+  --parchment: #FBF7EF;
+  --wine: #4A1521;
+  --wine-deep: #2B0B12;
+  --brass: #C59B27;
+  --brass-light: #E0BA53;
+  --ink: #241A1D;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--parchment);
+  color: var(--ink);
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-display {
+  font-family: var(--font-cormorant), Georgia, serif;
+}
+
+.font-body {
+  font-family: var(--font-spectral), Georgia, serif;
+}
+
+.font-hebrew {
+  font-family: var(--font-frank-ruhl), David, serif;
+}
