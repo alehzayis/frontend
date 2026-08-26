@@ -4,6 +4,8 @@ import Navbar from "@/components/Navbar"
 import Services from "@/components/Services"
 import Values from "@/components/Values"
 import Testimonials from "./Testimonials/page"
+import CallToAction from "@/components/CallToAction"
+import Footer from "@/components/Footer"
 
 const Home =()=>{
   return(
@@ -14,6 +16,8 @@ const Home =()=>{
    <Services/>
    <Values/>
    <Testimonials/>
+   <CallToAction/>
+   <Footer/>
    </>
   )
 }
