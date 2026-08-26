@@ -46,7 +46,7 @@ export default function PricingPage() {
         <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#8B7B7E]">$</span>
         <input
           type="number"
-          step="0.001"
+          step="0.01"
           min="0"
           value={pricing[lang][tier]}
           onChange={(e) => updateRate(lang, tier, e.target.value)}
