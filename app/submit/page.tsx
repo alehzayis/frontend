@@ -45,13 +45,15 @@ export default function SubmitPage() {
     try {
       setLoading(true);
       const response = await api.post("/api/submissions", formData);
+      const { wordCount, estimatedCost } = response.data.data;
 
-      setResult({
-        wordCount: response.data.data.wordCount,
-        estimatedCost: response.data.data.estimatedCost,
+      setResult({ wordCount, estimatedCost });
+
+      toast.success("Manuscript submitted for review", {
+        description: `Word count: ${wordCount.toLocaleString()}  •  Estimated cost: $${estimatedCost.toFixed(2)}`,
+        duration: 6000,
       });
 
-      toast.success("Manuscript submitted for review");
       setFile(null);
     } catch (err: any) {
       toast.error(err?.response?.data?.message || "Unable to submit your file");
