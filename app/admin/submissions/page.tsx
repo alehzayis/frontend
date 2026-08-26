@@ -20,6 +20,7 @@ const tabs = [
   { key: "new", label: "New" },
   { key: "reviewed", label: "Reviewed" },
   { key: "sent", label: "Sent" },
+  { key: "all", label: "Show All" },
 ] as const;
 
 const serviceLabels: Record<string, string> = {
@@ -68,7 +69,10 @@ export default function SubmissionsPage() {
     }
   };
 
-  const visible = submissions.filter((s) => s.status === activeTab);
+  const countFor = (key: (typeof tabs)[number]["key"]) =>
+    key === "all" ? submissions.length : submissions.filter((s) => s.status === key).length;
+
+  const visible = activeTab === "all" ? submissions : submissions.filter((s) => s.status === activeTab);
 
   return (
     <div className="space-y-6">
@@ -77,19 +81,23 @@ export default function SubmissionsPage() {
         <p className="mt-1 font-body text-sm text-[#66575A]">Review and manage uploaded manuscripts.</p>
       </div>
 
-      <div className="flex gap-2 border-b border-[#4A1521]/10">
+      <div className="flex items-center gap-2 border-b border-[#4A1521]/10">
         {tabs.map((tab) => {
-          const count = submissions.filter((s) => s.status === tab.key).length;
           const active = activeTab === tab.key;
+          const isAll = tab.key === "all";
           return (
             <button
               key={tab.key}
               onClick={() => setActiveTab(tab.key)}
               className={`px-4 py-2.5 font-body text-sm ${
-                active ? "border-b-2 border-[#4A1521] font-semibold text-[#4A1521]" : "text-[#8B7B7E] hover:text-[#4A1521]"
+                isAll
+                  ? `ml-2 rounded-sm border ${active ? "border-[#4A1521] text-[#4A1521]" : "border-[#4A1521]/20 text-[#4A1521]/70 hover:border-[#4A1521]/50"}`
+                  : active
+                    ? "border-b-2 border-[#4A1521] font-semibold text-[#4A1521]"
+                    : "text-[#8B7B7E] hover:text-[#4A1521]"
               }`}
             >
-              {tab.label} ({count})
+              {tab.label} ({countFor(tab.key)})
             </button>
           );
         })}
