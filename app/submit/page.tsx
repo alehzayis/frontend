@@ -13,6 +13,7 @@ const services = [
 ] as const;
 
 export default function SubmitPage() {
+  const [email, setEmail] = useState("");
   const [file, setFile] = useState<File | null>(null);
   const [language, setLanguage] = useState<"english" | "hebrew">("english");
   const [service, setService] = useState<(typeof services)[number]["key"]>("proofreading");
@@ -20,12 +21,23 @@ export default function SubmitPage() {
   const [result, setResult] = useState<{ wordCount: number; estimatedCost: number } | null>(null);
 
   const onSubmit = async () => {
+    if (!email.trim()) {
+      toast.error("Please enter your email");
+      return;
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
+      toast.error("Please enter a valid email");
+      return;
+    }
+
     if (!file) {
       toast.error("Please choose a file to upload");
       return;
     }
 
     const formData = new FormData();
+    formData.append("email", email.trim());
     formData.append("file", file);
     formData.append("language", language);
     formData.append("service", service);
@@ -59,6 +71,17 @@ export default function SubmitPage() {
         </p>
 
         <div className="mt-8 space-y-6 rounded-sm border border-[#4A1521]/10 bg-white p-6">
+          <div>
+            <label className="mb-2 block font-body text-xs font-semibold uppercase tracking-wide text-[#4A1521]">Email</label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="you@example.com"
+              className="h-11 w-full rounded-sm border border-[#4A1521]/20 px-4 font-body text-sm text-[#3A101A] outline-none focus:border-[#4A1521]"
+            />
+          </div>
+
           <div>
             <label className="mb-2 block font-body text-xs font-semibold uppercase tracking-wide text-[#4A1521]">Language</label>
             <div className="flex gap-3">
