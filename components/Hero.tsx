@@ -489,13 +489,11 @@ export default function Hero() {
 
                       Machon Aleh Zayis
                     </div>
-
-                    {/* Title */}
-
                     <h2
                       className="
                         font-display
                         text-[1.8rem]
+                        bu
                         font-normal
                         tracking-[0.02em]
                         text-[#F4D98C]
@@ -533,7 +531,7 @@ export default function Hero() {
                     bottom-0
                     left-0
                     right-0
-                    z-[5]
+                    z-5
                     flex
                     h-[82px]
                     items-end
@@ -550,7 +548,7 @@ export default function Hero() {
                   <h2
                     className="
     relative
-    -top-[6px]
+    -top-1.5
     font-display
     text-[1.75rem]
     font-normal
@@ -578,10 +576,6 @@ export default function Hero() {
                   "
                 />
               </div>
-
-              {/* =================================================
-                  CONTROLS
-              ================================================= */}
 
               <div
                 className="

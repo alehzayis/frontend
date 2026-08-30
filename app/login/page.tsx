@@ -69,8 +69,13 @@ export default function LoginPage() {
       toast.success(`Welcome back${user?.name ? `, ${user.name}` : ""}.`);
 
       setData({ email: "", password: "" });
+        const destination = user?.mustChangePassword
+        ? "/change-password"
+        : user?.role === "admin"
+        ? "/admin"
+        : "/dashboard";
 
-      router.push(user?.mustChangePassword ? "/change-password" : "/");
+      router.push(destination);
     } catch (err: any) {
       const message =
         err?.response?.data?.message ||
