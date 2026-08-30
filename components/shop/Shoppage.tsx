@@ -14,7 +14,7 @@ import { ShopProduct } from "@/components/shop/shopTypes";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-export default function ShopPage() {
+export default function ShopPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -84,73 +84,73 @@ export default function ShopPage() {
 
   return (
     <>
-    <Navbar/>
-    <main className="min-h-screen bg-[#FBF7EF]">
-      <div className="mx-auto max-w-[1280px] px-6 py-[28px] sm:px-10">
-        <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Shop" }]} />
+      <Navbar />
+      <main className="min-h-screen bg-[#FBF7EF]">
+        <div className="mx-auto max-w-[1280px] px-6 py-[28px] sm:px-10">
+          <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Shop" }]} />
 
-        <h1 className="mt-[10px] font-display text-[2.1rem] font-normal text-[#3A101A]">Shop</h1>
+          <h1 className="mt-[10px] font-display text-[2.1rem] font-normal text-[#3A101A]">Shop</h1>
 
-        <div className="mt-[22px] grid grid-cols-1 gap-[28px] lg:grid-cols-[220px_1fr]">
-          <aside className="lg:sticky lg:top-[20px] lg:self-start">
-            <ProductFilters
-              formats={formats}
-              onFormatsChange={(next) => updateParams({ formats: next.join(",") || null })}
-              languages={languages}
-              onLanguagesChange={(next) => updateParams({ languages: next.join(",") || null })}
-              category={category}
-              onCategoryChange={(next) => updateParams({ category: next || null })}
-            />
-          </aside>
+          <div className="mt-[22px] grid grid-cols-1 gap-[28px] lg:grid-cols-[220px_1fr]">
+            <aside className="lg:sticky lg:top-[20px] lg:self-start">
+              <ProductFilters
+                formats={formats}
+                onFormatsChange={(next) => updateParams({ formats: next.join(",") || null })}
+                languages={languages}
+                onLanguagesChange={(next) => updateParams({ languages: next.join(",") || null })}
+                category={category}
+                onCategoryChange={(next) => updateParams({ category: next || null })}
+              />
+            </aside>
 
-          <div className="space-y-[20px]">
-            <ShopControls
-              search={searchInput}
-              onSearchChange={setSearchInput}
-              sort={sort}
-              onSortChange={(next) => updateParams({ sort: next })}
-              view={view}
-              onViewChange={setView}
-            />
+            <div className="space-y-[20px]">
+              <ShopControls
+                search={searchInput}
+                onSearchChange={setSearchInput}
+                sort={sort}
+                onSortChange={(next) => updateParams({ sort: next })}
+                view={view}
+                onViewChange={setView}
+              />
 
-            {loading ? (
-              <p className="font-body text-[0.88rem] text-[#8B7B7E]">Loading books...</p>
-            ) : products.length === 0 ? (
-              <p className="font-body text-[0.88rem] text-[#8B7B7E]">No books match these filters.</p>
-            ) : view === "grid" ? (
-              <div className="grid grid-cols-[repeat(auto-fill,minmax(240px,1fr))] gap-[18px]">
-                {products.map((product) => (
-                  <ProductCard key={product._id} product={product} />
-                ))}
-              </div>
-            ) : (
-              <div>
-                {products.map((product) => (
-                  <ProductListItem
-                    key={product._id}
-                    product={product}
-                    variant={view === "orderForm" ? "orderForm" : "row"}
-                    onQuantityChange={(id, qty) => setOrderQuantities((prev) => ({ ...prev, [id]: qty }))}
-                  />
-                ))}
-                {view === "orderForm" && (
-                  <button
-                    type="button"
-                    onClick={addSelectedToCart}
-                    className="mt-[16px] h-[46px] rounded-[2px] bg-[#4A1521] px-[24px] font-body text-[0.78rem] font-semibold uppercase tracking-[0.15em] text-[#FFF9EF] hover:bg-[#310B13]"
-                  >
-                    Add Selected to Cart
-                  </button>
-                )}
-              </div>
-            )}
+              {loading ? (
+                <p className="font-body text-[0.88rem] text-[#8B7B7E]">Loading books...</p>
+              ) : products.length === 0 ? (
+                <p className="font-body text-[0.88rem] text-[#8B7B7E]">No books match these filters.</p>
+              ) : view === "grid" ? (
+                <div className="grid grid-cols-[repeat(auto-fill,minmax(240px,1fr))] gap-[18px]">
+                  {products.map((product) => (
+                    <ProductCard key={product._id} product={product} />
+                  ))}
+                </div>
+              ) : (
+                <div>
+                  {products.map((product) => (
+                    <ProductListItem
+                      key={product._id}
+                      product={product}
+                      variant={view === "orderForm" ? "orderForm" : "row"}
+                      onQuantityChange={(id, qty) => setOrderQuantities((prev) => ({ ...prev, [id]: qty }))}
+                    />
+                  ))}
+                  {view === "orderForm" && (
+                    <button
+                      type="button"
+                      onClick={addSelectedToCart}
+                      className="mt-[16px] h-[46px] rounded-[2px] bg-[#4A1521] px-[24px] font-body text-[0.78rem] font-semibold uppercase tracking-[0.15em] text-[#FFF9EF] hover:bg-[#310B13]"
+                    >
+                      Add Selected to Cart
+                    </button>
+                  )}
+                </div>
+              )}
 
-            <Pagination page={pagination.page} pages={pagination.pages} onChange={(next) => updateParams({ page: String(next) })} />
+              <Pagination page={pagination.page} pages={pagination.pages} onChange={(next) => updateParams({ page: String(next) })} />
+            </div>
           </div>
         </div>
-      </div>
-    </main>
-    <Footer/>
-     </>
+      </main>
+      <Footer />
+    </>
   );
 }
