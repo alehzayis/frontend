@@ -1,17 +1,22 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import { useCartStore, useCartCount } from "@/lib/store/cartStore";
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const cartCount = useCartCount();
+  const initCart = useCartStore((s) => s.init);
+
+  useEffect(() => {
+    initCart();
+  }, [initCart]);
 
   const closeMobile = () => setMobileOpen(false);
 
   return (
     <>
-      {/* =========================================================
-          SIGNATURE SPINE KEY
-      ========================================================= */}
       <div
         aria-hidden="true"
         className="flex h-[5px] w-full"
@@ -115,8 +120,8 @@ export default function Navbar() {
           {/* ACTIONS */}
           <div className="flex items-center gap-[18px]">
             {/* CART */}
-            <button
-              type="button"
+            <Link
+              href="/cart"
               aria-label="Shopping Cart"
               className="
                 relative flex cursor-pointer
@@ -152,9 +157,9 @@ export default function Navbar() {
                   text-[#241505]
                 "
               >
-                0
+                {cartCount}
               </span>
-            </button>
+            </Link>
 
             {/* GET A QUOTE */}
             <a

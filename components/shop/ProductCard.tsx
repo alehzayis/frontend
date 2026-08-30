@@ -3,8 +3,9 @@
 import { useState } from "react";
 import Link from "next/link";
 import { toast } from "sonner";
-import { BookOpen, Heart, ShoppingCart, Star } from "lucide-react";
+import { BookOpen, Heart, Minus, Plus, ShoppingCart, Star } from "lucide-react";
 import { ShopProduct } from "@/components/shop/shopTypes";
+import { useCartStore } from "@/lib/store/cartStore";
 
 const CURRENCY_SYMBOLS: Record<string, string> = {
   usd: "$",
@@ -30,6 +31,11 @@ const getBadge = (product: ShopProduct) => {
 
 export default function ProductCard({ product }: { product: ShopProduct }) {
   const [wishlisted, setWishlisted] = useState(false);
+  const addItem = useCartStore((s) => s.addItem);
+  const updateQuantity = useCartStore((s) => s.updateQuantity);
+  const quantityInCart = useCartStore(
+    (s) => s.items.find((i) => i.product._id === product._id)?.quantity || 0
+  );
 
   const cover = product.images?.[0]?.url;
   const badge = getBadge(product);
@@ -45,7 +51,28 @@ export default function ProductCard({ product }: { product: ShopProduct }) {
 
   const addToCart = (e: React.MouseEvent) => {
     e.preventDefault();
-    toast("Cart isn't wired up yet — this button is ready as soon as it is.");
+    addItem({
+      _id: product._id,
+      title: product.title,
+      slug: product.slug,
+      author: product.author,
+      price: product.price,
+      compareAtPrice: product.compareAtPrice,
+      currency,
+      image: cover || null,
+      format: product.format,
+    });
+    toast.success(isHebrew ? "נוסף לסל" : "Added to cart");
+  };
+
+  const increment = (e: React.MouseEvent) => {
+    e.preventDefault();
+    updateQuantity(product._id, quantityInCart + 1);
+  };
+
+  const decrement = (e: React.MouseEvent) => {
+    e.preventDefault();
+    updateQuantity(product._id, quantityInCart - 1);
   };
 
   return (
@@ -120,14 +147,38 @@ export default function ProductCard({ product }: { product: ShopProduct }) {
             )}
           </div>
 
-          <button
-            type="button"
-            onClick={addToCart}
-            className="flex items-center gap-[6px] rounded-full bg-[#C59B27] px-[12px] py-[7px] font-body text-[0.74rem] font-semibold text-[#3A101A] transition-colors duration-200 hover:bg-[#B08820]"
-          >
-            <ShoppingCart size={13} strokeWidth={1.8} />
-            {isHebrew ? "הוסף לסל" : "Add"}
-          </button>
+          {quantityInCart > 0 ? (
+            <div className="flex items-center gap-[10px] rounded-full bg-[#C59B27] px-[8px] py-[6px]">
+              <button
+                type="button"
+                onClick={decrement}
+                aria-label="Decrease quantity"
+                className="flex h-[18px] w-[18px] items-center justify-center rounded-full text-[#3A101A] hover:bg-[#B08820]"
+              >
+                <Minus size={12} strokeWidth={2.2} />
+              </button>
+              <span className="min-w-[12px] text-center font-body text-[0.78rem] font-semibold text-[#3A101A]">
+                {quantityInCart}
+              </span>
+              <button
+                type="button"
+                onClick={increment}
+                aria-label="Increase quantity"
+                className="flex h-[18px] w-[18px] items-center justify-center rounded-full text-[#3A101A] hover:bg-[#B08820]"
+              >
+                <Plus size={12} strokeWidth={2.2} />
+              </button>
+            </div>
+          ) : (
+            <button
+              type="button"
+              onClick={addToCart}
+              className="flex items-center gap-[6px] rounded-full bg-[#C59B27] px-[12px] py-[7px] font-body text-[0.74rem] font-semibold text-[#3A101A] transition-colors duration-200 hover:bg-[#B08820]"
+            >
+              <ShoppingCart size={13} strokeWidth={1.8} />
+              {isHebrew ? "הוסף לסל" : "Add"}
+            </button>
+          )}
         </div>
       </div>
     </Link>
