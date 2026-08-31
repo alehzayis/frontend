@@ -14,33 +14,31 @@ export default function CheckoutSuccessContent() {
   const [status, setStatus] = useState<Status>("checking");
 
   useEffect(() => {
-    if (!orderId || redirectStatus !== "succeeded") {
-      setStatus(redirectStatus === "failed" ? "failed" : "pending");
+    if (!orderId) {
+      setStatus("failed");
       return;
     }
 
-    let attempts = 0;
+    if (redirectStatus && redirectStatus !== "succeeded" && redirectStatus !== "processing") {
+      setStatus("failed");
+      return;
+    }
+
     let cancelled = false;
 
-    const poll = async () => {
-      try {
-        const res = await api.get(`/api/orders/${orderId}`);
-        if (res.data.data.status === "paid") {
-          if (!cancelled) setStatus("paid");
-          return;
-        }
-      } catch {
-        // a transient error here shouldn't fail the page — just keep polling
-      }
-
-      attempts += 1;
-      if (!cancelled) {
-        if (attempts < 8) setTimeout(poll, 1500);
+    api
+      .post(`/api/orders/${orderId}/confirm`)
+      .then((res) => {
+        if (cancelled) return;
+        const orderStatus = res.data.data.status;
+        if (orderStatus === "paid") setStatus("paid");
+        else if (orderStatus === "failed" || orderStatus === "cancelled") setStatus("failed");
         else setStatus("pending");
-      }
-    };
+      })
+      .catch(() => {
+        if (!cancelled) setStatus("pending");
+      });
 
-    poll();
     return () => {
       cancelled = true;
     };
