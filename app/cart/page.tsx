@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { Minus, Plus, ShoppingBag, Trash2 } from "lucide-react";
 import Navbar from "@/components/Navbar";
@@ -19,6 +20,7 @@ const formatPrice = (amount: number, currency = "usd") => {
 };
 
 export default function CartPage() {
+  const router = useRouter();
   const items = useCartStore((s) => s.items);
   const updateQuantity = useCartStore((s) => s.updateQuantity);
   const removeItem = useCartStore((s) => s.removeItem);
@@ -31,7 +33,7 @@ export default function CartPage() {
       toast.error("Please sign in to check out");
       return;
     }
-    toast("Checkout isn't wired up yet — this is ready as soon as it is.");
+    router.push("/checkout");
   };
 
   if (items.length === 0) {

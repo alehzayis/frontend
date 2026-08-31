@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useCartStore, useCartCount } from "@/lib/store/cartStore";
-
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const cartCount = useCartCount();
@@ -14,6 +13,14 @@ export default function Navbar() {
   }, [initCart]);
 
   const closeMobile = () => setMobileOpen(false);
+  const NavbarItem = [
+    { name: "Home", link: "#home" },
+     { name: "Shop", link: "/shop" },
+    { name: "About", link: "#about" },
+    { name: "Services", link: "#services" },
+    { name: "Our Work", link: "#work" },
+    { name: "Contact", link: "#contact" },
+  ];
 
   return (
     <>
@@ -27,10 +34,6 @@ export default function Navbar() {
         <span className="flex-1 bg-[#4A2A1B]" />
         <span className="flex-1 bg-gradient-to-r from-[#C59B27] to-[#E0BA53]" />
       </div>
-
-      {/* =========================================================
-          DESKTOP / MAIN NAVBAR
-      ========================================================= */}
       <header
         className="
           sticky top-0 z-[100]
@@ -109,12 +112,13 @@ export default function Navbar() {
           {/* DESKTOP NAVIGATION */}
           <nav className="hidden sm:block">
             <ul className="flex items-center gap-[30px]">
-              <NavItem href="#home">Home</NavItem>
-              <NavItem href="#about">About</NavItem>
-              <NavItem href="#services">Services</NavItem>
-              <NavItem href="#work">Our Work</NavItem>
-              <NavItem href="#contact">Contact</NavItem>
+              {NavbarItem.map((item) => (
+                <NavItem key={item.name} href={item.link}>
+                  {item.name}
+                </NavItem>
+              ))}
             </ul>
+
           </nav>
 
           {/* ACTIONS */}
