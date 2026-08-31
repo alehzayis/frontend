@@ -73,7 +73,7 @@ export default function LoginPage() {
         ? "/change-password"
         : user?.role === "admin"
         ? "/admin"
-        : "/dashboard";
+        : "/account";
 
       router.push(destination);
     } catch (err: any) {
