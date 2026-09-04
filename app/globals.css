@@ -41,7 +41,7 @@ body {
 }
 
 .font-hebrew {
-  font-family: var(--font-frank-ruhl), David, serif;
+  font-family: var(--font-hebrew), David, serif;
 }
 
 ::selection {
