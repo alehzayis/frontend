@@ -74,6 +74,12 @@ const slides = [
   },
 ];
 
+const heroFeatures = [
+  "Complete services for every stage of your sefer",
+  "Publishing seforim in Hebrew, English, and Yiddish",
+  "Online seforim store showcasing your work for sale",
+];
+
 export default function Hero() {
   const [active, setActive] = useState(0);
   const [isHovering, setIsHovering] = useState(false);
@@ -164,31 +170,36 @@ export default function Hero() {
           ===================================================== */}
 
           <div className="relative z-10 text-center lg:text-left">
-            {/* Eyebrow */}
+            {/* Hebrew tagline — small pre-heading label, RTL, brand accent rule */}
 
             <div
               className="
-                mb-[18px]
+                mb-[24px]
                 flex
-                items-center
                 justify-center
-                gap-[11px]
                 lg:justify-start
               "
             >
-              <span className="h-px w-[25px] bg-[#C59B27]" />
-
               <span
+                dir="rtl"
+                lang="he"
                 className="
-                  font-body
-                  text-[0.76rem]
-                  font-semibold
-                  uppercase
-                  tracking-[0.27em]
+                  border-b
+                  border-[#C59B27]/70
+                  pb-[9px]
+                  font-hebrew
+                  text-[1.02rem]
+                  font-medium
+                  leading-none
                   text-[#8B6816]
+                  lg:border-b-0
+                  lg:border-r-2
+                  lg:border-[#C59B27]
+                  lg:pb-0
+                  lg:pr-[14px]
                 "
               >
-                Torah Publishing, Cover to Cover
+                עריכת ספרים מרישא עד גמירא
               </span>
             </div>
 
@@ -207,59 +218,119 @@ export default function Hero() {
                 lg:text-[4.55rem]
               "
             >
-              Your Vision,
+              Torah Publishing,
               <br />
 
               <em className="font-medium italic text-[#A77B18]">
-                In Print.
+                Crafted.
               </em>
             </h1>
 
             {/* Gold divider */}
 
-            <div className="my-[24px] h-[2px] w-[58px] bg-[#C59B27]" />
+            <div className="mx-auto my-[26px] h-[2px] w-[58px] bg-[#C59B27] lg:mx-0" />
 
-            {/* Description */}
+            {/* Description — the emotive line, given a touch more weight */}
 
             <p
               className="
                 mx-auto
-                mb-[32px]
-                max-w-[560px]
-                font-body
-                text-[1.04rem]
+                mb-[30px]
+                max-w-[540px]
+                font-display
+                text-[1.22rem]
                 font-normal
-                leading-[1.72]
-                text-[#55474A]
-                sm:text-[1.1rem]
+                italic
+                leading-[1.6]
+                text-[#5C4A44]
+                sm:text-[1.32rem]
                 lg:mx-0
               "
             >
-              Complete publishing services for today&apos;s Torah
-              community — from first draft to finished sefer, with
-              precision and dedication at every stage.
+              To every mechaber, a sefer is like an only child. We
+              treat it that way.
             </p>
+
+            {/* Feature bullets — medallion-style markers */}
+
+            <ul
+              className="
+                mx-auto
+                mb-[36px]
+                flex
+                max-w-[500px]
+                flex-col
+                gap-[15px]
+                lg:mx-0
+              "
+            >
+              {heroFeatures.map((feature) => (
+                <li
+                  key={feature}
+                  className="
+                    flex
+                    items-start
+                    justify-center
+                    gap-[13px]
+                    text-left
+                    lg:justify-start
+                  "
+                >
+                  <span
+                    aria-hidden="true"
+                    className="
+                      mt-[1px]
+                      flex
+                      h-[19px]
+                      w-[19px]
+                      flex-shrink-0
+                      items-center
+                      justify-center
+                      rounded-full
+                      border
+                      border-[#C59B27]/55
+                      text-[0.52rem]
+                      text-[#C59B27]
+                    "
+                  >
+                    ◆
+                  </span>
+
+                  <span
+                    className="
+                      font-body
+                      text-[0.98rem]
+                      leading-[1.6]
+                      text-[#55474A]
+                    "
+                  >
+                    {feature}
+                  </span>
+                </li>
+              ))}
+            </ul>
 
             {/* Buttons */}
 
             <div
               className="
-                mb-[25px]
                 flex
                 flex-wrap
                 items-center
                 justify-center
-                gap-[12px]
+                gap-[14px]
                 lg:justify-start
               "
             >
               <a
                 href="#quote"
                 className="
+                  group
                   inline-flex
                   h-[49px]
                   items-center
                   justify-center
+                  gap-[9px]
                   rounded-[2px]
                   border
                   border-[#4A1521]
@@ -279,11 +350,16 @@ export default function Hero() {
                   hover:shadow-[0_10px_25px_rgba(74,21,33,0.2)]
                 "
               >
-                Get a Quote
+                Request Quote
+                <ArrowRight
+                  size={13}
+                  strokeWidth={2}
+                  className="transition-transform duration-200 group-hover:translate-x-[2px]"
+                />
               </a>
 
               <a
-                href="#work"
+                href="/shop"
                 className="
                   inline-flex
                   h-[49px]
@@ -307,33 +383,8 @@ export default function Hero() {
                   hover:bg-white
                 "
               >
-                Our Work
+                Shop Seforim
               </a>
-            </div>
-
-            {/* Small tagline */}
-
-            <div
-              className="
-                flex
-                items-center
-                justify-center
-                gap-[9px]
-                font-body
-                text-[0.79rem]
-                italic
-                text-[#65575A]
-                lg:justify-start
-              "
-            >
-              <span className="font-normal text-[#C59B27]">
-                ◆
-              </span>
-
-              <span>
-                Publishing seforim &amp; manuscripts in Hebrew,
-                English &amp; Yiddish.
-              </span>
             </div>
           </div>
 
@@ -436,7 +487,10 @@ export default function Hero() {
 
                 {/* =================================================
                     HOVER PANEL
-                    slides UP from bottom
+                    Fully hidden at rest, slides up on hover.
+                    (Previously peeked ~82px at rest, which visually
+                    overlapped and clipped the resting title below —
+                    now it stays fully off-canvas until hovered.)
                 ================================================= */}
 
                 <div
@@ -445,7 +499,7 @@ export default function Hero() {
                     inset-x-0
                     bottom-0
                     z-10
-                    translate-y-[calc(100%-82px)]
+                    translate-y-full
                     transition-transform
                     duration-500
                     ease-[cubic-bezier(0.22,1,0.36,1)]
@@ -493,7 +547,6 @@ export default function Hero() {
                       className="
                         font-display
                         text-[1.8rem]
-                        bu
                         font-normal
                         tracking-[0.02em]
                         text-[#F4D98C]
@@ -522,24 +575,29 @@ export default function Hero() {
 
                 {/* =================================================
                     RESTING STATE TITLE
+                    Fixed: dropped the "-top-1.5" nudge (was pushing
+                    the line so its descenders sat right at the
+                    clipped edge) and gave the box more height +
+                    breathing room so the full word always clears
+                    the frame, "lifted" comfortably above the bottom.
                 ================================================= */}
 
                 <div
                   className="
                     pointer-events-none
                     absolute
+                    inset-x-0
                     bottom-0
-                    left-0
-                    right-0
-                    z-5
+                    z-[5]
                     flex
-                    h-[82px]
+                    h-[104px]
                     items-end
                     bg-gradient-to-t
                     from-[#16070B]/85
+                    via-[#16070B]/25
                     to-transparent
                     px-[24px]
-                    pb-[34px]
+                    pb-[24px]
                     transition-opacity
                     duration-300
                     group-hover:opacity-0
@@ -547,13 +605,12 @@ export default function Hero() {
                 >
                   <h2
                     className="
-    relative
-    -top-1.5
-    font-display
-    text-[1.75rem]
-    font-normal
-    text-[#F2D890]
-  "
+                      font-display
+                      text-[1.75rem]
+                      font-normal
+                      leading-[1.2]
+                      text-[#F2D890]
+                    "
                   >
                     {slide.title}
                   </h2>
