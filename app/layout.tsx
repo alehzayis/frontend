@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, EB_Garamond } from "next/font/google";
-import localFont from "next/font/local";
+import { Geist, Geist_Mono, EB_Garamond, Frank_Ruhl_Libre } from "next/font/google";
 import { Toaster } from "sonner";
 import "./globals.css";
 
@@ -21,11 +20,10 @@ const garamond = EB_Garamond({
   style: ["normal", "italic"],
 });
 
-const gveretLevin = localFont({
-  src: "./fonts/GveretLevin-Regular.woff2",
+const frankRuhl = Frank_Ruhl_Libre({
   variable: "--font-hebrew",
-  weight: "400",
-  display: "swap",
+  subsets: ["hebrew"],
+  weight: ["400", "500", "700"],
 });
 
 export const metadata: Metadata = {
@@ -37,7 +35,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${garamond.variable} ${gveretLevin.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${garamond.variable} ${frankRuhl.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         {children}
