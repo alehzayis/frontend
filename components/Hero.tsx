@@ -99,7 +99,7 @@ export default function Hero() {
 
     const timer = setInterval(() => {
       setActive((current) => (current + 1) % slides.length);
-    }, 5000);
+    }, 3000);
 
     return () => clearInterval(timer);
   }, [isHovering]);
@@ -122,9 +122,6 @@ export default function Hero() {
         lg:pt-[78px]
       "
     >
-      {/* =========================================================
-          BACKGROUND DETAIL
-      ========================================================= */}
 
       <div
         aria-hidden="true"
@@ -471,8 +468,6 @@ export default function Hero() {
                     group-hover:scale-[1.045]
                   "
                 />
-
-                {/* Base image contrast */}
 
                 <div
                   className="
