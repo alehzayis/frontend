@@ -6,12 +6,12 @@ import Values from "@/components/Values"
 import Testimonials from "./Testimonials/page"
 import Footer from "@/components/Footer"
 import QuoteBanner from "@/components/CallToAction"
-import TopBar from "@/components/home/Topbar"
+import TopbarHome from "@/components/home/TopbarHome"
 
 const Home =()=>{
   return(
    <>
-   <TopBar/>
+  <TopbarHome/>
    <Navbar/>
    <Hero/>
    <About/>

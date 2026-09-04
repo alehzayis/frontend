@@ -4,7 +4,7 @@ import { ChevronDown } from "lucide-react";
 
 const ANNOUNCEMENTS = ["Preserving Torah", "Publishing Seforim", "Building for Generations"];
 
-export default function TopBar() {
+export default function TopbarHome() {
   return (
     <div className="hidden items-center justify-between bg-[#2B0B12] px-8 py-2 text-[0.72rem] tracking-[0.06em] text-[#F4E4B8] sm:flex">
       <div className="flex items-center gap-2">
