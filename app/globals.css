@@ -1,12 +1,24 @@
 @import "tailwindcss";
 
-:root {
-  --parchment: #FBF7EF;
-  --wine: #4A1521;
-  --wine-deep: #2B0B12;
-  --brass: #C59B27;
-  --brass-light: #E0BA53;
-  --ink: #241A1D;
+@theme {
+  --color-parchment: #FBF7EF;
+  --color-parchment-deep: #F3ECDC;
+  --color-parchment-card: #FAF4E6;
+  --color-ink: #241A1D;
+  --color-ink-muted: #6E5D57;
+  --color-wine: #4A1521;
+  --color-wine-deep: #2B0B12;
+  --color-wine-ink: #1B060B;
+  --color-forest: #1C3326;
+  --color-forest-deep: #10201A;
+  --color-navy: #1B2740;
+  --color-navy-deep: #0F1729;
+  --color-umber: #4A2A1B;
+  --color-umber-deep: #2E1A10;
+  --color-brass: #C59B27;
+  --color-brass-light: #E0BA53;
+  --color-brass-pale: #F4E4B8;
+  --color-brass-deep: #9C7A1E;
 }
 
 html {
@@ -14,20 +26,25 @@ html {
 }
 
 body {
-  background: var(--parchment);
-  color: var(--ink);
+  background: var(--color-parchment);
+  color: var(--color-ink);
   margin: 0;
   -webkit-font-smoothing: antialiased;
 }
 
 .font-display {
-  font-family: var(--font-cormorant), Georgia, serif;
+  font-family: var(--font-garamond), Garamond, Georgia, serif;
 }
 
 .font-body {
-  font-family: var(--font-spectral), Georgia, serif;
+  font-family: var(--font-garamond), Garamond, Georgia, serif;
 }
 
 .font-hebrew {
   font-family: var(--font-frank-ruhl), David, serif;
+}
+
+::selection {
+  background-color: rgba(197, 155, 39, 0.35);
+  color: #2B0B12;
 }
