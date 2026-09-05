@@ -67,7 +67,7 @@ export default function Hero() {
   const prevSlide = () => setActive((current) => (current - 1 + slides.length) % slides.length);
 
   useEffect(() => {
-    const timer = setInterval(nextSlide, 5000);
+    const timer = setInterval(nextSlide, 3000);
     return () => clearInterval(timer);
   }, []);
 
@@ -85,7 +85,7 @@ export default function Hero() {
           <h1 className="max-w-[560px] font-display text-[3rem] font-normal leading-[1.05] tracking-[-0.02em] text-[#3A101A] sm:text-[3.5rem] lg:text-[3.9rem]">
             Torah Publishing,
             <br />
-            <em className="font-medium italic text-[#C08A1E]">Crafted for Generations.</em>
+            <em className="font-medium italic text-[#C08A1E]">Crafted.</em>
           </h1>
 
           <div className="my-7 h-[2px] w-[58px] bg-[#C59B27]" />
@@ -97,7 +97,7 @@ export default function Hero() {
           <div className="mt-9 grid grid-cols-1 gap-6 sm:grid-cols-3 sm:items-stretch sm:divide-x sm:divide-[#4A1521]/10">
             {features.map((feature, i) => (
               <div key={feature.text} className={`flex items-start gap-3 ${i > 0 ? "sm:pl-6" : ""}`}>
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#F7ECD9] text-[#4A1521]">{feature.icon}</span>
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#C59B27]/40 bg-[#F7ECD9] text-[#4A1521]">{feature.icon}</span>
                 <p className="font-body text-[0.86rem] leading-[1.45] text-[#4A3A38]">{feature.text}</p>
               </div>
             ))}
@@ -141,7 +141,8 @@ export default function Hero() {
         </div>
 
         <div className="group relative hidden items-center justify-center lg:flex lg:w-[54%] lg:pr-10 xl:pr-16">
-          <div className="relative aspect-[4/3] w-full border border-[#C59B27]/60 bg-[#1E0E08] p-3 shadow-[0_30px_70px_-30px_rgba(43,11,18,0.45)]">
+          <div className="relative aspect-[4/3] w-[88%] bg-[#F3ECDC] p-4 shadow-[0_30px_70px_-30px_rgba(43,11,18,0.45)]">
+            <div className="relative h-full w-full border border-[#C59B27]/60 bg-[#1E0E08] p-3">
             <div aria-hidden="true" className="absolute left-0 top-0 h-0 w-0 border-b-[26px] border-r-[42px] border-b-transparent border-r-[#FBF3E6]" />
 
             <div className="relative h-full w-full overflow-hidden">
@@ -198,6 +199,7 @@ export default function Hero() {
             >
               <ArrowRight size={16} strokeWidth={1.6} />
             </button>
+          </div>
           </div>
         </div>
       </div>
