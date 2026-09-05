@@ -79,7 +79,7 @@ export default function Hero() {
         <div className="relative z-10 flex w-full flex-col justify-center px-6 py-16 sm:px-10 sm:py-20 lg:w-[46%] lg:px-14 xl:px-20">
           <div className="mb-5 flex items-center gap-3 text-[#9C7A1E]">
             <span className="h-px w-6 bg-current" />
-            <span dir="rtl" lang="he" className="font-hebrew text-[0.95rem]">עריכת ספרים מרישא עד גמירא</span>
+            <span dir="rtl" lang="he" className="text-[0.95rem]" style={{fontFamily:"Gveret Levin"}}>עריכת ספרים מרישא עד גמירא</span>
           </div>
 
           <h1 className="max-w-[560px] font-display text-[3rem] font-normal leading-[1.05] tracking-[-0.02em] text-[#3A101A] sm:text-[3.5rem] lg:text-[3.9rem]">
