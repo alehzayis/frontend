@@ -361,7 +361,7 @@ export default function Hero() {
         </div>
 
         <div className="group relative hidden items-center justify-center lg:flex lg:w-[54%] lg:pr-10 xl:pr-16">
-          <div className="relative w-[72%] border border-[#C59B27]/45 bg-[#F3ECDC] p-4 pb-5 shadow-[0_30px_70px_-30px_rgba(43,11,18,0.45)]">
+          <div className="relative w-[66%] border border-[#C59B27]/45 bg-[#F3ECDC] p-4 pb-5 shadow-[0_30px_70px_-30px_rgba(43,11,18,0.45)]">
             <span aria-hidden="true" className="pointer-events-none absolute left-2 top-2 h-6 w-6 border-l-2 border-t-2 border-[#C59B27]/80" />
             <span aria-hidden="true" className="pointer-events-none absolute bottom-2 right-2 h-6 w-6 border-b-2 border-r-2 border-[#C59B27]/80" />
 

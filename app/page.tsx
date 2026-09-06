@@ -11,7 +11,7 @@ import TopbarHome from "@/components/home/TopbarHome"
 const Home =()=>{
   return(
    <>
-  <TopbarHome/>
+  {/* <TopbarHome/> */}
    <Navbar/>
    <Hero/>
    <About/>
