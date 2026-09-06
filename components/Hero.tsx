@@ -145,7 +145,7 @@ export default function Hero() {
             <div className="flex items-center gap-2">
               <span className="h-px w-3 shrink-0 bg-[#C59B27]" />
               <p className="font-display text-[0.9rem] italic leading-[1.45] text-[#6E5D57]">
-                Complete services for every stage of your sefer
+                Online seforim store showcasing your work for sale
               </p>
 
             </div>
