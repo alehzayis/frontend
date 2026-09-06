@@ -294,9 +294,9 @@ export default function Hero() {
   const slide = slides[active] ?? slides[0];
 
   return (
-    <section id="home" className="relative overflow-hidden bg-[#FBF3E6]">
-      <div className="mx-auto flex w-full max-w-none flex-col lg:flex-row lg:items-center lg:pt-4">
-        <div className="relative z-10 flex w-full flex-col justify-center px-6 py-10 sm:px-10 sm:py-12 lg:w-[46%] lg:px-14 lg:py-8 xl:px-20">
+    <section id="home" className="relative overflow-hidden bg-[#FBF3E6] pt-6 lg:pt-10">
+      <div className="mx-auto flex w-full max-w-none flex-col lg:flex-row lg:items-center">
+        <div className="relative z-10 flex w-full flex-col justify-center px-6 py-8 sm:px-10 sm:py-10 lg:w-[46%] lg:px-14 lg:py-6 xl:px-20">
           <div className="mb-4 flex items-center gap-3 text-[#9C7A1E]">
             <span className="h-px w-6 bg-current" />
             <span dir="rtl" lang="he" className="font-hebrew text-[0.95rem]">עריכת ספרים מרישא עד גמירא</span>
@@ -314,7 +314,7 @@ export default function Hero() {
             To every mechaber, a sefer is like an only child. We treat it that way.
           </p>
 
-          <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-3 sm:items-stretch sm:divide-x sm:divide-[#4A1521]/10">
+          <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-3 sm:items-stretch sm:divide-x sm:divide-[#4A1521]/10">
             {features.map((feature, i) => (
               <div key={feature.text} className={`flex items-start gap-3 ${i > 0 ? "sm:pl-6" : ""}`}>
                 <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#C59B27]/40 bg-[#F7ECD9] text-[#4A1521]">{feature.icon}</span>
@@ -323,7 +323,7 @@ export default function Hero() {
             ))}
           </div>
 
-          <div className="mt-7 flex flex-wrap items-center gap-4">
+          <div className="mt-6 flex flex-wrap items-center gap-4">
             <Link href="#quote" className="group relative inline-flex h-[54px] items-center justify-center overflow-hidden rounded-[6px] bg-[#4A1521] px-8 text-[0.78rem] font-semibold uppercase tracking-[0.14em] text-[#FBF7EF] shadow-[0_14px_28px_-16px_rgba(43,11,18,0.6)] transition-colors duration-300 hover:bg-[#3A101A]">
               <span className="invisible flex items-center gap-3">
                 Request Quote
@@ -360,20 +360,20 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="group relative hidden items-center justify-center lg:flex lg:w-[54%] lg:pr-10 xl:pr-16">
-          <div className="relative w-[64%] border border-[#C59B27]/45 bg-[#F3ECDC] p-3 pb-4 shadow-[0_30px_70px_-30px_rgba(43,11,18,0.45)]">
+        <div className="group relative hidden items-center justify-center lg:flex lg:w-[59%] lg:pr-10 xl:pr-16">
+          <div className="relative w-[61%] border border-[#C59B27]/45 bg-[#F3ECDC] p-3 pb-4 shadow-[0_30px_70px_-30px_rgba(43,11,18,0.45)]">
             <span aria-hidden="true" className="pointer-events-none absolute left-2 top-2 h-6 w-6 border-l-2 border-t-2 border-[#C59B27]/80" />
             <span aria-hidden="true" className="pointer-events-none absolute bottom-2 right-2 h-6 w-6 border-b-2 border-r-2 border-[#C59B27]/80" />
 
             <div className="relative w-full border border-black/85 overflow-hidden">
-              {/* Photo — sits above the caption band, never overlapped by it */}
+              {/* Photo fills the card; band sits on top of it, anchored to the bottom */}
               <div className="relative aspect-[4/3] w-full overflow-hidden">
                 <Image key={slide.image} src={slide.image} alt={slide.title} fill priority sizes="60vw" className="object-cover" />
                 <div className="absolute inset-0 bg-[#F3ECDC]/[0.12]" />
               </div>
 
-              {/* Maroon caption band — a separate block below the photo, title lifts and description reveals on hover */}
-              <div className="relative bg-[#2B0B12] px-6 pb-4 pt-4 transition-[padding] duration-500 ease-[cubic-bezier(0.65,0,0.35,1)] group-hover:pb-5">
+              {/* Maroon caption band — pinned to the bottom; growing to reveal the subtitle pushes its top edge up over the photo */}
+              <div className="absolute inset-x-0 bottom-0 bg-[#2B0B12] px-6 pb-4 pt-4">
                 <div className="flex items-center gap-2 text-[#E0BA53]">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.4} className="h-3.5 w-3.5 shrink-0">
                     <rect x="3" y="4" width="18" height="16" rx="2" />
@@ -382,10 +382,11 @@ export default function Hero() {
                   <span className="text-[0.64rem] font-semibold uppercase tracking-[0.22em]">Machon Aleh Zayis</span>
                 </div>
 
-                <h3 className="mt-1.5 font-display text-[1.55rem] italic leading-[1.15] text-[#F5E9D0] transition-transform duration-500 ease-[cubic-bezier(0.65,0,0.35,1)] group-hover:-translate-y-1">
+                <h3 className="mt-1.5 font-display text-[1.55rem] italic leading-[1.15] text-[#F5E9D0]">
                   {slide.title}
                 </h3>
 
+                {/* Subtitle sits below the title, revealed as the band grows upward on hover */}
                 <div className="grid grid-rows-[0fr] transition-[grid-template-rows] duration-500 ease-[cubic-bezier(0.65,0,0.35,1)] group-hover:grid-rows-[1fr]">
                   <div className="overflow-hidden">
                     <p className="pt-2 font-body text-[0.98rem] leading-snug text-white">{slide.subtitle}</p>
@@ -428,7 +429,7 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="hidden items-center justify-center gap-4 pb-12 pt-2 lg:flex">
+      <div className="hidden items-center justify-center gap-4 pb-5 pt-0 lg:flex">
         <span className="h-px w-10 bg-[#C59B27]/50" />
         <p className="font-display text-[0.95rem] italic text-[#9C7A1E]">&ldquo;A brighter Torah tomorrow&rdquo;</p>
         <span className="h-px w-10 bg-[#C59B27]/50" />
