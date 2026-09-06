@@ -294,37 +294,37 @@ export default function Hero() {
   const slide = slides[active] ?? slides[0];
 
   return (
-    <section id="home" className="relative overflow-hidden bg-[#FBF3E6] pt-6 lg:pt-10">
-      <div className="mx-auto flex w-full max-w-none flex-col lg:flex-row lg:items-center">
-        <div className="relative z-10 flex w-full flex-col justify-center px-6 py-8 sm:px-10 sm:py-10 lg:w-[46%] lg:px-14 lg:py-6 xl:px-20">
-          <div className="mb-4 flex items-center gap-3 text-[#9C7A1E]">
+    <section id="home" className="relative overflow-x-hidden bg-[#FBF3E6] pt-8 lg:pt-14">
+      <div className="mx-auto flex w-full max-w-[1440px] flex-col lg:flex-row lg:items-center">
+        <div className="relative z-10 flex w-full flex-col justify-center px-6 py-10 sm:px-10 sm:py-14 lg:w-[46%] lg:px-14 lg:py-12 xl:px-16">
+          <div className="mb-5 flex items-center gap-3 text-[#9C7A1E]">
             <span className="h-px w-6 bg-current" />
-            <span dir="rtl" lang="he" className="font-hebrew text-[0.95rem]">עריכת ספרים מרישא עד גמירא</span>
+            <span dir="rtl" lang="he" className="font-hebrew text-[1.05rem]">עריכת ספרים מרישא עד גמירא</span>
           </div>
 
-          <h1 className="max-w-[560px] font-display text-[2.5rem] font-normal leading-[1.05] tracking-[-0.02em] text-[#3A101A] sm:text-[2.9rem] lg:text-[3.1rem]">
+          <h1 className="max-w-[600px] font-display text-[2.9rem] font-normal leading-[1.05] tracking-[-0.02em] text-[#3A101A] sm:text-[3.4rem] lg:text-[3.8rem]">
             Torah Publishing,
             <br />
             <em className="font-medium italic text-[#C08A1E]">Crafted.</em>
           </h1>
 
-          <div className="my-5 h-[2px] w-[58px] bg-[#C59B27]" />
+          <div className="my-6 h-[2px] w-[64px] bg-[#C59B27]" />
 
-          <p className="max-w-[460px] font-display text-[1.05rem] italic leading-[1.5] text-[#55474A]">
+          <p className="max-w-[500px] font-display text-[1.2rem] italic leading-[1.55] text-[#55474A]">
             To every mechaber, a sefer is like an only child. We treat it that way.
           </p>
 
-          <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-3 sm:items-stretch sm:divide-x sm:divide-[#4A1521]/10">
+          <div className="mt-7 grid grid-cols-1 gap-5 sm:grid-cols-3 sm:items-stretch sm:divide-x sm:divide-[#4A1521]/10">
             {features.map((feature, i) => (
-              <div key={feature.text} className={`flex items-start gap-3 ${i > 0 ? "sm:pl-6" : ""}`}>
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#C59B27]/40 bg-[#F7ECD9] text-[#4A1521]">{feature.icon}</span>
-                <p className="font-body text-[0.86rem] leading-[1.45] text-[#4A3A38]">{feature.text}</p>
+              <div key={feature.text} className={`flex items-start gap-3 ${i > 0 ? "sm:pl-7" : ""}`}>
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[#C59B27]/40 bg-[#F7ECD9] text-[#4A1521]">{feature.icon}</span>
+                <p className="font-body text-[0.95rem] leading-[1.5] text-[#4A3A38]">{feature.text}</p>
               </div>
             ))}
           </div>
 
-          <div className="mt-6 flex flex-wrap items-center gap-4">
-            <Link href="#quote" className="group relative inline-flex h-[54px] items-center justify-center overflow-hidden rounded-[6px] bg-[#4A1521] px-8 text-[0.78rem] font-semibold uppercase tracking-[0.14em] text-[#FBF7EF] shadow-[0_14px_28px_-16px_rgba(43,11,18,0.6)] transition-colors duration-300 hover:bg-[#3A101A]">
+          <div className="mt-8 flex flex-wrap items-center gap-4">
+            <Link href="#quote" className="group relative inline-flex h-[58px] items-center justify-center overflow-hidden rounded-[6px] bg-[#4A1521] px-9 text-[0.82rem] font-semibold uppercase tracking-[0.14em] text-[#FBF7EF] shadow-[0_14px_28px_-16px_rgba(43,11,18,0.6)] transition-colors duration-300 hover:bg-[#3A101A]">
               <span className="invisible flex items-center gap-3">
                 Request Quote
                 <ArrowRight size={15} strokeWidth={2} />
@@ -339,7 +339,7 @@ export default function Hero() {
               </span>
             </Link>
 
-            <Link href="/shop" className="group relative inline-flex h-[54px] items-center justify-center overflow-hidden rounded-[6px] border border-[#4A1521]/20 bg-[#FFFDF8] px-8 text-[0.78rem] font-semibold uppercase tracking-[0.14em] text-[#4A1521] transition-colors duration-300 hover:border-[#4A1521]/40">
+            <Link href="/shop" className="group relative inline-flex h-[58px] items-center justify-center overflow-hidden rounded-[6px] border border-[#4A1521]/20 bg-[#FFFDF8] px-9 text-[0.82rem] font-semibold uppercase tracking-[0.14em] text-[#4A1521] transition-colors duration-300 hover:border-[#4A1521]/40">
               <span className="invisible">Shop Seforim</span>
               <span aria-hidden="true" className="absolute inset-0 flex items-center justify-center transition-transform duration-500 ease-[cubic-bezier(0.65,0,0.35,1)] group-hover:-translate-y-full">
                 Shop Seforim
@@ -360,8 +360,8 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="group relative hidden items-center justify-center lg:flex lg:w-[59%] lg:pr-10 xl:pr-16">
-          <div className="relative w-[61%] border border-[#C59B27]/45 bg-[#F3ECDC] p-3 pb-4 shadow-[0_30px_70px_-30px_rgba(43,11,18,0.45)]">
+        <div className="group relative hidden items-center justify-center lg:flex lg:w-[54%] lg:pr-10 xl:pr-16">
+          <div className="relative w-[72%] border border-[#C59B27]/45 bg-[#F3ECDC] p-4 pb-5 shadow-[0_30px_70px_-30px_rgba(43,11,18,0.45)]">
             <span aria-hidden="true" className="pointer-events-none absolute left-2 top-2 h-6 w-6 border-l-2 border-t-2 border-[#C59B27]/80" />
             <span aria-hidden="true" className="pointer-events-none absolute bottom-2 right-2 h-6 w-6 border-b-2 border-r-2 border-[#C59B27]/80" />
 
@@ -373,23 +373,23 @@ export default function Hero() {
               </div>
 
               {/* Maroon caption band — pinned to the bottom; growing to reveal the subtitle pushes its top edge up over the photo */}
-              <div className="absolute inset-x-0 bottom-0 bg-[#2B0B12] px-6 pb-4 pt-4">
+              <div className="absolute inset-x-0 bottom-0 bg-[#2B0B12] px-7 pb-5 pt-5">
                 <div className="flex items-center gap-2 text-[#E0BA53]">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.4} className="h-3.5 w-3.5 shrink-0">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.4} className="h-4 w-4 shrink-0">
                     <rect x="3" y="4" width="18" height="16" rx="2" />
                     <path d="M7 9h.01M11 9h.01M15 9h.01M7 13h10" strokeLinecap="round" />
                   </svg>
-                  <span className="text-[0.64rem] font-semibold uppercase tracking-[0.22em]">Machon Aleh Zayis</span>
+                  <span className="text-[0.7rem] font-semibold uppercase tracking-[0.22em]">Machon Aleh Zayis</span>
                 </div>
 
-                <h3 className="mt-1.5 font-display text-[1.55rem] italic leading-[1.15] text-[#F5E9D0]">
+                <h3 className="mt-2 font-display text-[1.85rem] italic leading-[1.15] text-[#F5E9D0]">
                   {slide.title}
                 </h3>
 
                 {/* Subtitle sits below the title, revealed as the band grows upward on hover */}
                 <div className="grid grid-rows-[0fr] transition-[grid-template-rows] duration-500 ease-[cubic-bezier(0.65,0,0.35,1)] group-hover:grid-rows-[1fr]">
                   <div className="overflow-hidden">
-                    <p className="pt-2 font-body text-[0.98rem] leading-snug text-white">{slide.subtitle}</p>
+                    <p className="pt-2 font-body text-[1.05rem] leading-snug text-white">{slide.subtitle}</p>
                   </div>
                 </div>
               </div>
@@ -429,10 +429,10 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="hidden items-center justify-center gap-4 pb-5 pt-0 lg:flex">
-        <span className="h-px w-10 bg-[#C59B27]/50" />
-        <p className="font-display text-[0.95rem] italic text-[#9C7A1E]">&ldquo;A brighter Torah tomorrow&rdquo;</p>
-        <span className="h-px w-10 bg-[#C59B27]/50" />
+      <div className="hidden items-center justify-center gap-4 pb-8 pt-2 lg:flex">
+        <span className="h-px w-12 bg-[#C59B27]/50" />
+        <p className="font-display text-[1.05rem] italic text-[#9C7A1E]">&ldquo;A brighter Torah tomorrow&rdquo;</p>
+        <span className="h-px w-12 bg-[#C59B27]/50" />
       </div>
     </section>
   );
