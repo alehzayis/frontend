@@ -366,14 +366,14 @@ export default function Hero() {
             <span aria-hidden="true" className="pointer-events-none absolute bottom-2 right-2 h-6 w-6 border-b-2 border-r-2 border-[#C59B27]/80" />
 
             <div className="relative w-full border border-black/85 overflow-hidden">
-              {/* Photo fills the card; band sits on top of it, anchored to the bottom */}
+              {/* Photo — its own block, always shown at full size, never covered at rest */}
               <div className="relative aspect-[4/3] w-full overflow-hidden">
                 <Image key={slide.image} src={slide.image} alt={slide.title} fill priority sizes="60vw" className="object-cover" />
                 <div className="absolute inset-0 bg-[#F3ECDC]/[0.12]" />
               </div>
 
-              {/* Maroon caption band — pinned to the bottom; growing to reveal the subtitle pushes its top edge up over the photo */}
-              <div className="absolute inset-x-0 bottom-0 bg-[#2B0B12] px-7 pb-5 pt-5">
+              {/* Maroon caption band — sits below the photo at rest, not overlapping it. On hover it pulls itself up (negative margin) by roughly the same amount the subtitle grows, so its top edge rises into the photo while its bottom edge barely moves. */}
+              <div className="relative z-10 bg-[#2B0B12] px-7 pb-5 pt-5 transition-[margin-top] duration-500 ease-[cubic-bezier(0.65,0,0.35,1)] group-hover:-mt-8">
                 <div className="flex items-center gap-2 text-[#E0BA53]">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.4} className="h-4 w-4 shrink-0">
                     <rect x="3" y="4" width="18" height="16" rx="2" />
@@ -386,7 +386,6 @@ export default function Hero() {
                   {slide.title}
                 </h3>
 
-                {/* Subtitle sits below the title, revealed as the band grows upward on hover */}
                 <div className="grid grid-rows-[0fr] transition-[grid-template-rows] duration-500 ease-[cubic-bezier(0.65,0,0.35,1)] group-hover:grid-rows-[1fr]">
                   <div className="overflow-hidden">
                     <p className="pt-2 font-body text-[1.05rem] leading-snug text-white">{slide.subtitle}</p>
