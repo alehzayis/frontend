@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, EB_Garamond, Frank_Ruhl_Libre } from "next/font/google";
+import {
+  Geist,
+  Geist_Mono,
+  EB_Garamond,
+  Frank_Ruhl_Libre,
+} from "next/font/google";
 import { Toaster } from "sonner";
+import "@fontsource/gveret-levin";
 import "./globals.css";
 
 const geistSans = Geist({

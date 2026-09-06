@@ -23,14 +23,12 @@
 
 html {
   scroll-behavior: smooth;
-  overflow-x: hidden;
 }
 
 body {
   background: var(--color-parchment);
   color: var(--color-ink);
   margin: 0;
-  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -43,7 +41,7 @@ body {
 }
 
 .font-hebrew {
-  font-family: var(--font-hebrew), David, serif;
+  font-family: "Gveret Levin", cursive;
 }
 
 ::selection {
