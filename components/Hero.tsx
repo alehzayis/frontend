@@ -295,7 +295,7 @@ export default function Hero() {
 
   return (
     <section id="home" className="relative overflow-hidden bg-[#FBF3E6]">
-      <div className="mx-auto flex w-full max-w-none flex-col lg:flex-row lg:items-center lg:pt-2">
+      <div className="mx-auto flex w-full max-w-none flex-col lg:flex-row lg:items-center lg:pt-4">
         <div className="relative z-10 flex w-full flex-col justify-center px-6 py-10 sm:px-10 sm:py-12 lg:w-[46%] lg:px-14 lg:py-8 xl:px-20">
           <div className="mb-4 flex items-center gap-3 text-[#9C7A1E]">
             <span className="h-px w-6 bg-current" />
@@ -361,7 +361,7 @@ export default function Hero() {
         </div>
 
         <div className="group relative hidden items-center justify-center lg:flex lg:w-[54%] lg:pr-10 xl:pr-16">
-          <div className="relative w-[78%] border border-[#C59B27]/45 bg-[#F3ECDC] p-4 pb-5 shadow-[0_30px_70px_-30px_rgba(43,11,18,0.45)]">
+          <div className="relative w-[64%] border border-[#C59B27]/45 bg-[#F3ECDC] p-3 pb-4 shadow-[0_30px_70px_-30px_rgba(43,11,18,0.45)]">
             <span aria-hidden="true" className="pointer-events-none absolute left-2 top-2 h-6 w-6 border-l-2 border-t-2 border-[#C59B27]/80" />
             <span aria-hidden="true" className="pointer-events-none absolute bottom-2 right-2 h-6 w-6 border-b-2 border-r-2 border-[#C59B27]/80" />
 
@@ -388,7 +388,7 @@ export default function Hero() {
 
                 <div className="grid grid-rows-[0fr] transition-[grid-template-rows] duration-500 ease-[cubic-bezier(0.65,0,0.35,1)] group-hover:grid-rows-[1fr]">
                   <div className="overflow-hidden">
-                    <p className="pt-2 font-body text-[0.85rem] italic leading-snug text-white/70">{slide.subtitle}</p>
+                    <p className="pt-2 font-body text-[0.98rem] leading-snug text-white">{slide.subtitle}</p>
                   </div>
                 </div>
               </div>
@@ -428,7 +428,7 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="hidden items-center justify-center gap-4 pb-12 pt-0 lg:flex">
+      <div className="hidden items-center justify-center gap-4 pb-12 pt-2 lg:flex">
         <span className="h-px w-10 bg-[#C59B27]/50" />
         <p className="font-display text-[0.95rem] italic text-[#9C7A1E]">&ldquo;A brighter Torah tomorrow&rdquo;</p>
         <span className="h-px w-10 bg-[#C59B27]/50" />
