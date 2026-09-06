@@ -1,3 +1,251 @@
+// "use client";
+
+// import { useEffect, useState } from "react";
+// import Link from "next/link";
+// import Image from "next/image";
+// import { ArrowLeft, ArrowRight } from "lucide-react";
+
+// const slides = [
+//   {
+//     index: "01",
+//     label: "MANUSCRIPTS",
+//     title: "A Legacy of Torah",
+//     subtitle: "From timeless manuscripts to a brighter tomorrow.",
+//     image: "/assets/manuscripts.png",
+//   },
+//   {
+//     index: "02",
+//     label: "SEFORIM",
+//     title: "Bound With Devotion",
+//     subtitle: "Every sefer, crafted to be treasured for generations.",
+//     image: "/assets/printing.png",
+//   },
+//   {
+//     index: "03",
+//     label: "PUBLISHING",
+//     title: "Crafted With Purpose",
+//     subtitle: "Every sefer deserves the highest level of care.",
+//     image: "/assets/editing.png",
+//   },
+// ];
+
+
+
+// export default function Hero() {
+//   const [active, setActive] = useState(0);
+
+//   const nextSlide = () => setActive((current) => (current + 1) % slides.length);
+//   const prevSlide = () => setActive((current) => (current - 1 + slides.length) % slides.length);
+
+//   useEffect(() => {
+//     const timer = setInterval(nextSlide, 3000);
+//     return () => clearInterval(timer);
+//   }, []);
+
+//   if (slides.length === 0) return null;
+//   const slide = slides[active] ?? slides[0];
+
+//   return (
+//     <section id="home" className="relative overflow-x-hidden bg-[#FBF3E6] pt-8 lg:pt-14">
+//       <div className="mx-auto flex w-full max-w-[1440px] flex-col lg:flex-row lg:items-center">
+//         <div className="relative z-10 flex w-full flex-col justify-center px-6 py-10 sm:px-10 sm:py-14 lg:w-[46%] lg:px-14 lg:py-12 xl:px-16">
+//           <div className="mb-5 flex items-center gap-3">
+//             <span
+//               dir="rtl"
+//               lang="he"
+//               className="text-[1.05rem] text-[#6E5D57]"
+//               style={{ fontFamily: "Gveret Levin" }}
+//             >
+//               עריכת ספרים מרישא עד גמירא
+//             </span>
+
+//             <span className="h-10 w-[2px] bg-[#C59B27]" />
+//           </div>
+
+//           <h1 className="max-w-[600px] font-display text-[2.9rem] font-normal leading-[1.05] tracking-[-0.02em] text-[#4A1521] sm:text-[3.4rem] lg:text-[3.8rem]">
+//             Torah Publishing,
+//             <br />
+//             <em className="font-medium italic text-[#C08A1E]">Crafted.</em>
+//           </h1>
+
+//           <div className="my-6 h-[2px] w-[64px] bg-[#C59B27]" />
+//           <div className="max-w-[560px]">
+//             <p className="font-display text-[1.45rem] leading-[1.35] text-[#55474A] sm:text-[1.6rem]">
+//               <span className="italic">
+//                 To every mechaber, a sefer is like an{" "}
+//                 <span className="font-medium text-[#4A1521]">
+//                   only child.
+//                 </span>
+//               </span>
+//               <br />
+//               <span className="mt-1 inline-block font-medium italic text-[#4A1521]">
+//                 We treat it that way.
+//               </span>
+//             </p>
+//           </div>
+//           {/* <div className="mt-8 flex max-w-[590px] flex-col gap-3.5">
+//             <div className="flex items-center gap-2">
+//               <span className="h-px w-3 shrink-0 bg-[#C59B27]" />
+//               <p className="font-display text-[0.9rem] italic leading-[1.45] text-[#6E5D57]">
+//                 Complete services for every stage of your sefer
+//               </p>
+//             </div>
+
+//             <div className="flex items-center gap-2">
+//               <span className="h-px w-3 shrink-0 bg-[#C59B27]" />
+//               <p className="font-display text-[0.9rem] italic leading-[1.45] text-[#6E5D57]">
+//                 Publishing seforim in Hebrew, English, and Yiddish
+//               </p>
+//             </div>
+
+//             <div className="flex items-center gap-2">
+//               <span className="h-px w-3 shrink-0 bg-[#C59B27]" />
+//               <p className="font-display text-[0.9rem] italic leading-[1.45] text-[#6E5D57]">
+//                 Online seforim store showcasing your work for sale
+//               </p>
+
+//             </div>
+//           </div> */}
+//           <div className="mt-8 flex flex-wrap items-center gap-4">
+//             <Link
+//               href="#quote"
+//               className="group relative inline-flex h-[58px] items-center justify-center overflow-hidden rounded-[6px] bg-[#4A1521] px-9 text-[0.82rem] font-semibold uppercase tracking-[0.14em] text-[#FBF7EF] shadow-[0_14px_28px_-16px_rgba(43,11,18,0.6)] transition-colors duration-300 hover:bg-[#3A101A]"
+//             >
+//               <span className="invisible flex items-center gap-3">
+//                 Request Quote
+//                 <ArrowRight size={15} strokeWidth={2} />
+//               </span>
+
+//               <span
+//                 aria-hidden="true"
+//                 className="absolute inset-0 flex items-center justify-center gap-3 transition-transform duration-500 ease-[cubic-bezier(0.65,0,0.35,1)] group-hover:-translate-y-full"
+//               >
+//                 Request Quote
+//                 <ArrowRight size={15} strokeWidth={2} />
+//               </span>
+
+//               <span
+//                 aria-hidden="true"
+//                 className="absolute inset-0 flex translate-y-full items-center justify-center gap-3 transition-transform duration-500 ease-[cubic-bezier(0.65,0,0.35,1)] group-hover:translate-y-0"
+//               >
+//                 Request Quote
+//                 <ArrowRight size={15} strokeWidth={2} />
+//               </span>
+//             </Link>
+
+//             <Link
+//               href="/shop"
+//               className="group relative inline-flex h-[58px] items-center justify-center overflow-hidden rounded-[6px] border border-[#4A1521]/20 bg-[#FFFDF8] px-9 text-[0.82rem] font-semibold uppercase tracking-[0.14em] text-[#4A1521] transition-colors duration-300 hover:border-[#4A1521]/40"
+//             >
+//               <span className="invisible">
+//                 Shop Seforim
+//               </span>
+
+//               <span
+//                 aria-hidden="true"
+//                 className="absolute inset-0 flex items-center justify-center transition-transform duration-500 ease-[cubic-bezier(0.65,0,0.35,1)] group-hover:-translate-y-full"
+//               >
+//                 Shop Seforim
+//               </span>
+
+//               <span
+//                 aria-hidden="true"
+//                 className="absolute inset-0 flex translate-y-full items-center justify-center transition-transform duration-500 ease-[cubic-bezier(0.65,0,0.35,1)] group-hover:translate-y-0"
+//               >
+//                 Shop Seforim
+//               </span>
+//             </Link>
+//           </div>
+
+
+//         </div>
+
+//         <div className="relative h-[240px] w-full sm:h-[320px] lg:hidden">
+//           <Image key={slide.image} src={slide.image} alt={slide.title} fill priority className="object-cover" />
+//           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-black/40" />
+//           <div className="absolute bottom-6 left-6 right-6 text-white">
+//             <span className="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-[#E0BA53] [text-shadow:0_1px_6px_rgba(0,0,0,0.6)]">{slide.label}</span>
+//             <h3 className="mt-1 font-display text-[1.5rem] [text-shadow:0_2px_10px_rgba(0,0,0,0.6)]">{slide.title}</h3>
+//           </div>
+//         </div>
+
+//         <div className="relative hidden items-center justify-center lg:flex lg:w-[54%] lg:pr-10 xl:pr-16">
+//           <div className="group relative w-[66%] border border-[#C59B27]/45 bg-[#F3ECDC] p-4 pb-5 shadow-[0_30px_70px_-30px_rgba(43,11,18,0.45)]">
+//             <span aria-hidden="true" className="pointer-events-none absolute left-2 top-2 h-6 w-6 border-l-2 border-t-2 border-[#C59B27]/80" />
+//             <span aria-hidden="true" className="pointer-events-none absolute bottom-2 right-2 h-6 w-6 border-b-2 border-r-2 border-[#C59B27]/80" />
+
+//             <div className="relative w-full border border-black/85 overflow-hidden">
+//               {/* Photo — its own block, always shown at full size, never covered at rest */}
+//               <div className="relative aspect-[4/3] w-full overflow-hidden">
+//                 <Image key={slide.image} src={slide.image} alt={slide.title} fill priority sizes="60vw" className="object-cover" />
+//                 <div className="absolute inset-0 bg-[#F3ECDC]/[0.12]" />
+//               </div>
+
+//               {/* Maroon caption band — sits below the photo at rest, not overlapping it. On hover it pulls itself up (negative margin) by roughly the same amount the subtitle grows, so its top edge rises into the photo while its bottom edge barely moves. */}
+//               <div className="relative z-10 bg-[#2B0B12] px-7 pb-5 pt-5 transition-[margin-top] duration-500 ease-[cubic-bezier(0.65,0,0.35,1)] group-hover:-mt-8">
+//                 <div className="flex items-center gap-2 text-[#E0BA53]">
+//                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.4} className="h-4 w-4 shrink-0">
+//                     <rect x="3" y="4" width="18" height="16" rx="2" />
+//                     <path d="M7 9h.01M11 9h.01M15 9h.01M7 13h10" strokeLinecap="round" />
+//                   </svg>
+//                   <span className="text-[0.7rem] font-semibold uppercase tracking-[0.22em]">Machon Aleh Zayis</span>
+//                 </div>
+
+//                 <h3 className="mt-2 font-display text-[1.85rem] italic leading-[1.15] text-[#F5E9D0]">
+//                   {slide.title}
+//                 </h3>
+
+//                 <div className="grid grid-rows-[0fr] transition-[grid-template-rows] duration-500 ease-[cubic-bezier(0.65,0,0.35,1)] group-hover:grid-rows-[1fr]">
+//                   <div className="overflow-hidden">
+//                     <p className="pt-2 font-body text-[1.05rem] leading-snug text-white">{slide.subtitle}</p>
+//                   </div>
+//                 </div>
+//               </div>
+//             </div>
+
+//             {/* Controls row — sits in the outer cream margin, below the framed card, like the reference */}
+//             <div className="mt-4 flex items-center justify-between gap-4">
+//               <div className="flex items-center gap-3">
+//                 <span className="font-display text-[0.8rem] text-[#4A1521]/70">
+//                   {slide.index} / {String(slides.length).padStart(2, "0")}
+//                 </span>
+//                 <div className="h-px w-20 bg-[#4A1521]/15">
+//                   <div className="h-px bg-[#C59B27] transition-all duration-500" style={{ width: `${((active + 1) / slides.length) * 100}%` }} />
+//                 </div>
+//               </div>
+
+//               <div className="flex gap-2">
+//                 <button
+//                   type="button"
+//                   onClick={prevSlide}
+//                   aria-label="Previous slide"
+//                   className="flex h-9 w-9 items-center justify-center border border-[#4A1521]/25 text-[#4A1521] outline-none transition-colors hover:border-[#C59B27] hover:text-[#9C7A1E] focus-visible:ring-2 focus-visible:ring-[#C59B27]"
+//                 >
+//                   <ArrowLeft size={14} strokeWidth={1.6} />
+//                 </button>
+//                 <button
+//                   type="button"
+//                   onClick={nextSlide}
+//                   aria-label="Next slide"
+//                   className="flex h-9 w-9 items-center justify-center border border-[#4A1521]/25 text-[#4A1521] outline-none transition-colors hover:border-[#C59B27] hover:text-[#9C7A1E] focus-visible:ring-2 focus-visible:ring-[#C59B27]"
+//                 >
+//                   <ArrowRight size={14} strokeWidth={1.6} />
+//                 </button>
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+
+//       {/* <div className="hidden items-center justify-center gap-4 pb-8 pt-2 lg:flex">
+//         <span className="h-px w-12 bg-[#C59B27]/50" />
+//         <p className="font-display text-[1.05rem] italic text-[#9C7A1E]">&ldquo;A brighter Torah tomorrow&rdquo;</p>
+//         <span className="h-px w-12 bg-[#C59B27]/50" />
+//       </div> */}
+//     </section>
+//   );
+// }
+
 "use client";
 
 import { useEffect, useState } from "react";
@@ -29,13 +277,14 @@ const slides = [
   },
 ];
 
-
-
 export default function Hero() {
   const [active, setActive] = useState(0);
 
-  const nextSlide = () => setActive((current) => (current + 1) % slides.length);
-  const prevSlide = () => setActive((current) => (current - 1 + slides.length) % slides.length);
+  const nextSlide = () =>
+    setActive((current) => (current + 1) % slides.length);
+
+  const prevSlide = () =>
+    setActive((current) => (current - 1 + slides.length) % slides.length);
 
   useEffect(() => {
     const timer = setInterval(nextSlide, 3000);
@@ -43,32 +292,42 @@ export default function Hero() {
   }, []);
 
   if (slides.length === 0) return null;
+
   const slide = slides[active] ?? slides[0];
 
   return (
-    <section id="home" className="relative overflow-x-hidden bg-[#FBF3E6] pt-8 lg:pt-14">
+    <section
+      id="home"
+      className="relative overflow-x-hidden bg-[#FBF3E6] pt-8 lg:pt-14"
+    >
       <div className="mx-auto flex w-full max-w-[1440px] flex-col lg:flex-row lg:items-center">
-        <div className="relative z-10 flex w-full flex-col justify-center px-6 py-10 sm:px-10 sm:py-14 lg:w-[46%] lg:px-14 lg:py-12 xl:px-16">
-         <div className="mb-5 flex items-center gap-3">
-  <span
-    dir="rtl"
-    lang="he"
-    className="text-[1.05rem] text-[#6E5D57]"
-    style={{ fontFamily: "Gveret Levin" }}
-  >
-    עריכת ספרים מרישא עד גמירא
-  </span>
 
-  <span className="h-10 w-[2px] bg-[#C59B27]" />
-</div>
+        {/* LEFT SIDE — unchanged */}
+        <div className="relative z-10 flex w-full flex-col justify-center px-6 py-10 sm:px-10 sm:py-14 lg:w-[46%] lg:px-14 lg:py-12 xl:px-16">
+
+          <div className="mb-5 flex items-center gap-3">
+            <span
+              dir="rtl"
+              lang="he"
+              className="text-[1.05rem] text-[#6E5D57]"
+              style={{ fontFamily: "Gveret Levin" }}
+            >
+              עריכת ספרים מרישא עד גמירא
+            </span>
+
+            <span className="h-10 w-[2px] bg-[#C59B27]" />
+          </div>
 
           <h1 className="max-w-[600px] font-display text-[2.9rem] font-normal leading-[1.05] tracking-[-0.02em] text-[#4A1521] sm:text-[3.4rem] lg:text-[3.8rem]">
             Torah Publishing,
             <br />
-            <em className="font-medium italic text-[#C08A1E]">Crafted.</em>
+            <em className="font-medium italic text-[#C08A1E]">
+              Crafted.
+            </em>
           </h1>
 
           <div className="my-6 h-[2px] w-[64px] bg-[#C59B27]" />
+
           <div className="max-w-[560px]">
             <p className="font-display text-[1.45rem] leading-[1.35] text-[#55474A] sm:text-[1.6rem]">
               <span className="italic">
@@ -77,35 +336,15 @@ export default function Hero() {
                   only child.
                 </span>
               </span>
+
               <br />
+
               <span className="mt-1 inline-block font-medium italic text-[#4A1521]">
                 We treat it that way.
               </span>
             </p>
           </div>
-<div className="mt-8 flex max-w-[590px] flex-col gap-3.5">
-            <div className="flex items-center gap-2">
-              <span className="h-px w-3 shrink-0 bg-[#C59B27]" />
-              <p className="font-display text-[0.9rem] italic leading-[1.45] text-[#6E5D57]">
-                Complete services for every stage of your sefer
-              </p>
-            </div>
 
-            <div className="flex items-center gap-2">
-              <span className="h-px w-3 shrink-0 bg-[#C59B27]" />
-              <p className="font-display text-[0.9rem] italic leading-[1.45] text-[#6E5D57]">
-                Publishing seforim in Hebrew, English, and Yiddish
-              </p>
-            </div>
-
-            <div className="flex items-center gap-2">
-              <span className="h-px w-3 shrink-0 bg-[#C59B27]" />
-              <p className="font-display text-[0.9rem] italic leading-[1.45] text-[#6E5D57]">
-                Online seforim store showcasing your work for sale
-              </p>
-
-            </div>
-          </div>
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <Link
               href="#quote"
@@ -156,39 +395,86 @@ export default function Hero() {
               </span>
             </Link>
           </div>
-
-          
         </div>
 
+        {/* MOBILE IMAGE */}
         <div className="relative h-[240px] w-full sm:h-[320px] lg:hidden">
-          <Image key={slide.image} src={slide.image} alt={slide.title} fill priority className="object-cover" />
+          <Image
+            key={slide.image}
+            src={slide.image}
+            alt={slide.title}
+            fill
+            priority
+            className="object-cover"
+          />
+
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-black/40" />
+
           <div className="absolute bottom-6 left-6 right-6 text-white">
-            <span className="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-[#E0BA53] [text-shadow:0_1px_6px_rgba(0,0,0,0.6)]">{slide.label}</span>
-            <h3 className="mt-1 font-display text-[1.5rem] [text-shadow:0_2px_10px_rgba(0,0,0,0.6)]">{slide.title}</h3>
+            <span className="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-[#E0BA53] [text-shadow:0_1px_6px_rgba(0,0,0,0.6)]">
+              {slide.label}
+            </span>
+
+            <h3 className="mt-1 font-display text-[1.5rem] [text-shadow:0_2px_10px_rgba(0,0,0,0.6)]">
+              {slide.title}
+            </h3>
           </div>
         </div>
 
+        {/* DESKTOP IMAGE / CAROUSEL */}
         <div className="relative hidden items-center justify-center lg:flex lg:w-[54%] lg:pr-10 xl:pr-16">
-          <div className="group relative w-[66%] border border-[#C59B27]/45 bg-[#F3ECDC] p-4 pb-5 shadow-[0_30px_70px_-30px_rgba(43,11,18,0.45)]">
-            <span aria-hidden="true" className="pointer-events-none absolute left-2 top-2 h-6 w-6 border-l-2 border-t-2 border-[#C59B27]/80" />
-            <span aria-hidden="true" className="pointer-events-none absolute bottom-2 right-2 h-6 w-6 border-b-2 border-r-2 border-[#C59B27]/80" />
 
-            <div className="relative w-full border border-black/85 overflow-hidden">
-              {/* Photo — its own block, always shown at full size, never covered at rest */}
+          {/* ONLY ALIGNMENT CHANGE:
+              frame remains same size and styling,
+              but is positioned slightly toward the left */}
+          <div className="group relative w-[66%] -translate-x-[6%] border border-[#C59B27]/45 bg-[#F3ECDC] p-4 pb-5 shadow-[0_30px_70px_-30px_rgba(43,11,18,0.45)]">
+
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute left-2 top-2 h-6 w-6 border-l-2 border-t-2 border-[#C59B27]/80"
+            />
+
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute bottom-2 right-2 h-6 w-6 border-b-2 border-r-2 border-[#C59B27]/80"
+            />
+
+            <div className="relative w-full overflow-hidden border border-black/85">
+
               <div className="relative aspect-[4/3] w-full overflow-hidden">
-                <Image key={slide.image} src={slide.image} alt={slide.title} fill priority sizes="60vw" className="object-cover" />
+                <Image
+                  key={slide.image}
+                  src={slide.image}
+                  alt={slide.title}
+                  fill
+                  priority
+                  sizes="60vw"
+                  className="object-cover"
+                />
+
                 <div className="absolute inset-0 bg-[#F3ECDC]/[0.12]" />
               </div>
 
-              {/* Maroon caption band — sits below the photo at rest, not overlapping it. On hover it pulls itself up (negative margin) by roughly the same amount the subtitle grows, so its top edge rises into the photo while its bottom edge barely moves. */}
               <div className="relative z-10 bg-[#2B0B12] px-7 pb-5 pt-5 transition-[margin-top] duration-500 ease-[cubic-bezier(0.65,0,0.35,1)] group-hover:-mt-8">
+
                 <div className="flex items-center gap-2 text-[#E0BA53]">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.4} className="h-4 w-4 shrink-0">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth={1.4}
+                    className="h-4 w-4 shrink-0"
+                  >
                     <rect x="3" y="4" width="18" height="16" rx="2" />
-                    <path d="M7 9h.01M11 9h.01M15 9h.01M7 13h10" strokeLinecap="round" />
+                    <path
+                      d="M7 9h.01M11 9h.01M15 9h.01M7 13h10"
+                      strokeLinecap="round"
+                    />
                   </svg>
-                  <span className="text-[0.7rem] font-semibold uppercase tracking-[0.22em]">Machon Aleh Zayis</span>
+
+                  <span className="text-[0.7rem] font-semibold uppercase tracking-[0.22em]">
+                    Machon Aleh Zayis
+                  </span>
                 </div>
 
                 <h3 className="mt-2 font-display text-[1.85rem] italic leading-[1.15] text-[#F5E9D0]">
@@ -197,20 +483,30 @@ export default function Hero() {
 
                 <div className="grid grid-rows-[0fr] transition-[grid-template-rows] duration-500 ease-[cubic-bezier(0.65,0,0.35,1)] group-hover:grid-rows-[1fr]">
                   <div className="overflow-hidden">
-                    <p className="pt-2 font-body text-[1.05rem] leading-snug text-white">{slide.subtitle}</p>
+                    <p className="pt-2 font-body text-[1.05rem] leading-snug text-white">
+                      {slide.subtitle}
+                    </p>
                   </div>
                 </div>
+
               </div>
             </div>
 
-            {/* Controls row — sits in the outer cream margin, below the framed card, like the reference */}
+            {/* CONTROLS */}
             <div className="mt-4 flex items-center justify-between gap-4">
+
               <div className="flex items-center gap-3">
                 <span className="font-display text-[0.8rem] text-[#4A1521]/70">
                   {slide.index} / {String(slides.length).padStart(2, "0")}
                 </span>
+
                 <div className="h-px w-20 bg-[#4A1521]/15">
-                  <div className="h-px bg-[#C59B27] transition-all duration-500" style={{ width: `${((active + 1) / slides.length) * 100}%` }} />
+                  <div
+                    className="h-px bg-[#C59B27] transition-all duration-500"
+                    style={{
+                      width: `${((active + 1) / slides.length) * 100}%`,
+                    }}
+                  />
                 </div>
               </div>
 
@@ -223,6 +519,7 @@ export default function Hero() {
                 >
                   <ArrowLeft size={14} strokeWidth={1.6} />
                 </button>
+
                 <button
                   type="button"
                   onClick={nextSlide}
@@ -232,16 +529,11 @@ export default function Hero() {
                   <ArrowRight size={14} strokeWidth={1.6} />
                 </button>
               </div>
+
             </div>
           </div>
         </div>
       </div>
-
-      {/* <div className="hidden items-center justify-center gap-4 pb-8 pt-2 lg:flex">
-        <span className="h-px w-12 bg-[#C59B27]/50" />
-        <p className="font-display text-[1.05rem] italic text-[#9C7A1E]">&ldquo;A brighter Torah tomorrow&rdquo;</p>
-        <span className="h-px w-12 bg-[#C59B27]/50" />
-      </div> */}
     </section>
   );
 }
