@@ -19,12 +19,19 @@ const slides = [
     title: "Bound With Devotion",
     subtitle: "Every sefer, crafted to be treasured for generations.",
     image: "/assets/printing.png",
-  },
+  }, 
   {
     index: "03",
     label: "PUBLISHING",
     title: "Crafted With Purpose",
     subtitle: "Every sefer deserves the highest level of care.",
+    image: "/assets/editing.png",
+  },
+  {
+    index: "04",
+    label: "TYPING",
+    title: "Typing",
+    subtitle: "ETurning handwritten pages into a clear, carefully typed file, ready for editing.",
     image: "/assets/editing.png",
   },
 ];
@@ -71,7 +78,8 @@ export default function Hero() {
     return () => clearInterval(timer);
   }, []);
 
-  const slide = slides[active];
+  if (slides.length === 0) return null;
+  const slide = slides[active] ?? slides[0];
 
   return (
     <section id="home" className="relative overflow-hidden bg-[#FBF3E6]">
@@ -79,18 +87,18 @@ export default function Hero() {
         <div className="relative z-10 flex w-full flex-col justify-center px-6 py-16 sm:px-10 sm:py-20 lg:w-[46%] lg:px-14 xl:px-20">
           <div className="mb-5 flex items-center gap-3 text-[#9C7A1E]">
             <span className="h-px w-6 bg-current" />
-            <span dir="rtl" lang="he" className="text-[0.95rem]" style={{fontFamily:"Gveret Levin"}}>עריכת ספרים מרישא עד גמירא</span>
+            <span dir="rtl" lang="he" className="font-hebrew text-[0.95rem]">עריכת ספרים מרישא עד גמירא</span>
           </div>
 
           <h1 className="max-w-[560px] font-display text-[3rem] font-normal leading-[1.05] tracking-[-0.02em] text-[#3A101A] sm:text-[3.5rem] lg:text-[3.9rem]">
             Torah Publishing,
             <br />
-            <em className="font-medium italic text-[#C08A1E]">Crafted.</em>
+            <em className="font-medium  text-[#C08A1E]">Crafted.</em>
           </h1>
 
           <div className="my-7 h-[2px] w-[58px] bg-[#C59B27]" />
 
-          <p className="max-w-[460px] font-display text-[1.1rem] italic leading-[1.55] text-[#55474A]">
+          <p className="max-w-[460px] font-display text-[1.1rem]  leading-[1.55] text-[#55474A]">
             To every mechaber, a sefer is like an only child. We treat it that way.
           </p>
 
@@ -141,65 +149,69 @@ export default function Hero() {
         </div>
 
         <div className="group relative hidden items-center justify-center lg:flex lg:w-[54%] lg:pr-10 xl:pr-16">
-          <div className="relative aspect-[4/3] w-[88%] bg-[#F3ECDC] p-4 shadow-[0_30px_70px_-30px_rgba(43,11,18,0.45)]">
-            <div className="relative h-full w-full border border-[#C59B27]/60 bg-[#1E0E08] p-3">
-            <div aria-hidden="true" className="absolute left-0 top-0 h-0 w-0 border-b-[26px] border-r-[42px] border-b-transparent border-r-[#FBF3E6]" />
+          <div className="relative w-[88%] border border-[#C59B27]/45 bg-[#F3ECDC] p-5 pb-6 shadow-[0_30px_70px_-30px_rgba(43,11,18,0.45)]">
+            <span aria-hidden="true" className="pointer-events-none absolute left-2 top-2 h-6 w-6 border-l-2 border-t-2 border-[#C59B27]/80" />
+            <span aria-hidden="true" className="pointer-events-none absolute bottom-2 right-2 h-6 w-6 border-b-2 border-r-2 border-[#C59B27]/80" />
 
-            <div className="relative h-full w-full overflow-hidden">
-              <Image key={slide.image} src={slide.image} alt={slide.title} fill priority sizes="60vw" className="object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/10" />
-              <div className="absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/50" />
-
-              <div className="pointer-events-none absolute inset-0 flex scale-95 items-center justify-center p-8 opacity-0 transition-all duration-300 group-hover:scale-100 group-hover:opacity-100">
-                <div className="max-w-[300px] rounded-md border border-white/10 bg-black/30 px-7 py-6 text-center text-white shadow-[0_20px_40px_-16px_rgba(0,0,0,0.6)] backdrop-blur-sm">
-                  <span className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-[#E0BA53]">{slide.label}</span>
-                  <div className="mx-auto my-3 h-px w-10 bg-[#E0BA53]" />
-                  <h3 className="font-display text-[1.65rem] leading-[1.15]">{slide.title}</h3>
-                  <p className="mt-2 font-body text-[0.85rem] italic text-white/80">{slide.subtitle}</p>
-                </div>
+            <div className="relative aspect-[4/3] w-full border border-black/85 overflow-hidden">
+              <div className="relative h-full w-full overflow-hidden">
+                <Image key={slide.image} src={slide.image} alt={slide.title} fill priority sizes="60vw" className="object-cover" />
+                <div className="absolute inset-0 bg-[#F3ECDC]/[0.12]" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
               </div>
 
-              <div className="absolute bottom-6 left-6 flex items-center gap-3">
-                <span className="font-display text-[0.82rem] text-white/90">
-                  {slide.index} / {String(slides.length).padStart(2, "0")}
-                </span>
-                <div className="h-px w-24 bg-white/25">
-                  <div className="h-px bg-[#E0BA53] transition-all duration-500" style={{ width: `${((active + 1) / slides.length) * 100}%` }} />
+              {/* Maroon caption band — title lifts and description reveals on hover */}
+              <div className="absolute inset-x-0 bottom-0 bg-[#2B0B12]/[0.97] px-6 pb-4 pt-4 transition-[padding] duration-500 ease-[cubic-bezier(0.65,0,0.35,1)] group-hover:pb-5">
+                <div className="flex items-center gap-2 text-[#E0BA53]">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.4} className="h-3.5 w-3.5 shrink-0">
+                    <rect x="3" y="4" width="18" height="16" rx="2" />
+                    <path d="M7 9h.01M11 9h.01M15 9h.01M7 13h10" strokeLinecap="round" />
+                  </svg>
+                  <span className="text-[0.64rem] font-semibold uppercase tracking-[0.22em]">Machon Aleh Zayis</span>
                 </div>
-              </div>
 
-              <div className="absolute bottom-6 right-6 flex gap-2">
-                {slides.map((s, i) => (
-                  <button
-                    key={s.image}
-                    type="button"
-                    onClick={() => setActive(i)}
-                    aria-label={`Show ${s.title}`}
-                    className={`relative h-11 w-14 overflow-hidden rounded-[2px] border outline-none transition-colors focus-visible:ring-2 focus-visible:ring-[#E0BA53] focus-visible:ring-offset-2 focus-visible:ring-offset-[#1E0E08] ${i === active ? "border-[#E0BA53]" : "border-white/30 hover:border-white/60"}`}
-                  >
-                    <Image src={s.image} alt={s.title} fill className="object-cover" />
-                  </button>
-                ))}
+                <h3 className="mt-1.5 font-display text-[1.55rem]  leading-[1.15] text-[#F5E9D0] transition-transform duration-500 ease-[cubic-bezier(0.65,0,0.35,1)] group-hover:-translate-y-1">
+                  {slide.title}
+                </h3>
+
+                <div className="grid grid-rows-[0fr] transition-[grid-template-rows] duration-500 ease-[cubic-bezier(0.65,0,0.35,1)] group-hover:grid-rows-[1fr]">
+                  <div className="overflow-hidden">
+                    <p className="pt-2 font-body text-[0.85rem]  leading-snug text-white">{slide.subtitle}</p>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <button
-              type="button"
-              onClick={prevSlide}
-              aria-label="Previous slide"
-              className="absolute left-0 top-1/2 flex h-11 w-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/40 bg-[#2B0B12] text-white outline-none transition-colors hover:bg-[#3A101A] focus-visible:ring-2 focus-visible:ring-[#E0BA53] focus-visible:ring-offset-2 focus-visible:ring-offset-[#FBF3E6]"
-            >
-              <ArrowLeft size={16} strokeWidth={1.6} />
-            </button>
-            <button
-              type="button"
-              onClick={nextSlide}
-              aria-label="Next slide"
-              className="absolute right-0 top-1/2 flex h-11 w-11 translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-gradient-to-b from-[#E8C264] to-[#B8891F] text-[#2B1A05] outline-none transition-colors focus-visible:ring-2 focus-visible:ring-[#4A1521] focus-visible:ring-offset-2 focus-visible:ring-offset-[#FBF3E6]"
-            >
-              <ArrowRight size={16} strokeWidth={1.6} />
-            </button>
-          </div>
+            {/* Controls row — sits in the outer cream margin, below the framed card, like the reference */}
+            <div className="mt-4 flex items-center justify-between gap-4">
+              <div className="flex items-center gap-3">
+                <span className="font-display text-[0.8rem] text-[#4A1521]/70">
+                  {slide.index} / {String(slides.length).padStart(2, "0")}
+                </span>
+                <div className="h-px w-20 bg-[#4A1521]/15">
+                  <div className="h-px bg-[#C59B27] transition-all duration-500" style={{ width: `${((active + 1) / slides.length) * 100}%` }} />
+                </div>
+              </div>
+
+              <div className="flex gap-2">
+                <button
+                  type="button"
+                  onClick={prevSlide}
+                  aria-label="Previous slide"
+                  className="flex h-9 w-9 items-center justify-center border border-[#4A1521]/25 text-[#4A1521] outline-none transition-colors hover:border-[#C59B27] hover:text-[#9C7A1E] focus-visible:ring-2 focus-visible:ring-[#C59B27]"
+                >
+                  <ArrowLeft size={14} strokeWidth={1.6} />
+                </button>
+                <button
+                  type="button"
+                  onClick={nextSlide}
+                  aria-label="Next slide"
+                  className="flex h-9 w-9 items-center justify-center border border-[#4A1521]/25 text-[#4A1521] outline-none transition-colors hover:border-[#C59B27] hover:text-[#9C7A1E] focus-visible:ring-2 focus-visible:ring-[#C59B27]"
+                >
+                  <ArrowRight size={14} strokeWidth={1.6} />
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
