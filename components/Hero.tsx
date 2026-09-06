@@ -51,7 +51,7 @@ export default function Hero() {
         <div className="relative z-10 flex w-full flex-col justify-center px-6 py-10 sm:px-10 sm:py-14 lg:w-[46%] lg:px-14 lg:py-12 xl:px-16">
           <div className="mb-5 flex items-center gap-3 text-[#9C7A1E]">
 
-            <span dir="rtl" lang="he" className="text-[1.05rem]" style={{ fontFamily: 'Gveret Levin' }}>עריכת ספרים מרישא עד גמירא</span>|
+            <span dir="rtl" lang="he" className="font-hebrew text-[1.05rem]">עריכת ספרים מרישא עד גמירא</span>
           </div>
 
           <h1 className="max-w-[600px] font-display text-[2.9rem] font-normal leading-[1.05] tracking-[-0.02em] text-[#4A1521] sm:text-[3.4rem] lg:text-[3.8rem]">
@@ -147,7 +147,7 @@ export default function Hero() {
               <p className="font-display text-[0.9rem] italic leading-[1.45] text-[#6E5D57]">
                 Complete services for every stage of your sefer
               </p>
-              
+
             </div>
           </div>
         </div>
@@ -162,7 +162,7 @@ export default function Hero() {
         </div>
 
         <div className="relative hidden items-center justify-center lg:flex lg:w-[54%] lg:pr-10 xl:pr-16">
-  <div className="group relative w-[66%] border border-[#C59B27]/45 bg-[#F3ECDC] p-4 pb-5 shadow-[0_30px_70px_-30px_rgba(43,11,18,0.45)]">
+          <div className="group relative w-[66%] border border-[#C59B27]/45 bg-[#F3ECDC] p-4 pb-5 shadow-[0_30px_70px_-30px_rgba(43,11,18,0.45)]">
             <span aria-hidden="true" className="pointer-events-none absolute left-2 top-2 h-6 w-6 border-l-2 border-t-2 border-[#C59B27]/80" />
             <span aria-hidden="true" className="pointer-events-none absolute bottom-2 right-2 h-6 w-6 border-b-2 border-r-2 border-[#C59B27]/80" />
 
