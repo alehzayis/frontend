@@ -49,10 +49,18 @@ export default function Hero() {
     <section id="home" className="relative overflow-x-hidden bg-[#FBF3E6] pt-8 lg:pt-14">
       <div className="mx-auto flex w-full max-w-[1440px] flex-col lg:flex-row lg:items-center">
         <div className="relative z-10 flex w-full flex-col justify-center px-6 py-10 sm:px-10 sm:py-14 lg:w-[46%] lg:px-14 lg:py-12 xl:px-16">
-          <div className="mb-5 flex items-center gap-3 text-[#9C7A1E]">
+         <div className="mb-5 flex items-center gap-3">
+  <span
+    dir="rtl"
+    lang="he"
+    className="text-[1.05rem] text-[#6E5D57]"
+    style={{ fontFamily: "Gveret Levin" }}
+  >
+    עריכת ספרים מרישא עד גמירא
+  </span>
 
-            <span dir="rtl" lang="he" className="font-hebrew text-[1.05rem]">עריכת ספרים מרישא עד גמירא</span>
-          </div>
+  <span className="h-10 w-[2px] bg-[#C59B27]" />
+</div>
 
           <h1 className="max-w-[600px] font-display text-[2.9rem] font-normal leading-[1.05] tracking-[-0.02em] text-[#4A1521] sm:text-[3.4rem] lg:text-[3.8rem]">
             Torah Publishing,
@@ -75,7 +83,29 @@ export default function Hero() {
               </span>
             </p>
           </div>
+<div className="mt-8 flex max-w-[590px] flex-col gap-3.5">
+            <div className="flex items-center gap-2">
+              <span className="h-px w-3 shrink-0 bg-[#C59B27]" />
+              <p className="font-display text-[0.9rem] italic leading-[1.45] text-[#6E5D57]">
+                Complete services for every stage of your sefer
+              </p>
+            </div>
 
+            <div className="flex items-center gap-2">
+              <span className="h-px w-3 shrink-0 bg-[#C59B27]" />
+              <p className="font-display text-[0.9rem] italic leading-[1.45] text-[#6E5D57]">
+                Publishing seforim in Hebrew, English, and Yiddish
+              </p>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <span className="h-px w-3 shrink-0 bg-[#C59B27]" />
+              <p className="font-display text-[0.9rem] italic leading-[1.45] text-[#6E5D57]">
+                Online seforim store showcasing your work for sale
+              </p>
+
+            </div>
+          </div>
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <Link
               href="#quote"
@@ -127,29 +157,7 @@ export default function Hero() {
             </Link>
           </div>
 
-          <div className="mt-8 flex max-w-[590px] flex-col gap-3.5">
-            <div className="flex items-center gap-2">
-              <span className="h-px w-3 shrink-0 bg-[#C59B27]" />
-              <p className="font-display text-[0.9rem] italic leading-[1.45] text-[#6E5D57]">
-                Complete services for every stage of your sefer
-              </p>
-            </div>
-
-            <div className="flex items-center gap-2">
-              <span className="h-px w-3 shrink-0 bg-[#C59B27]" />
-              <p className="font-display text-[0.9rem] italic leading-[1.45] text-[#6E5D57]">
-                Publishing seforim in Hebrew, English, and Yiddish
-              </p>
-            </div>
-
-            <div className="flex items-center gap-2">
-              <span className="h-px w-3 shrink-0 bg-[#C59B27]" />
-              <p className="font-display text-[0.9rem] italic leading-[1.45] text-[#6E5D57]">
-                Online seforim store showcasing your work for sale
-              </p>
-
-            </div>
-          </div>
+          
         </div>
 
         <div className="relative h-[240px] w-full sm:h-[320px] lg:hidden">
