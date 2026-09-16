@@ -196,27 +196,28 @@ export default function ProductDetailPage() {
     }
   };
 
-  const toggleWishlist = () => {
-    if (isWishlisted) {
-      removeFromWishlist(product._id);
-      toast(isHebrew ? "הוסר מהמועדפים" : "Removed from your wishlist");
-      return;
-    }
+ const toggleWishlist = async (e: React.MouseEvent) => {
+  e.preventDefault();
+  e.stopPropagation();
 
-    addToWishlist({
-      _id: product._id,
-      title: product.title,
-      slug: product.slug,
-      author: product.author,
-      price: product.price,
-      compareAtPrice: product.compareAtPrice,
-      currency,
-      image: images[0]?.url || null,
-      format: product.format,
-      language: product.language,
-    });
-    toast.success(isHebrew ? "נוסף למועדפים" : "Saved to your wishlist");
-  };
+  if (isWishlisted) {
+    await removeFromWishlist(product._id);
+    toast(
+      isHebrew
+        ? "הוסר מהמועדפים"
+        : "Removed from your wishlist"
+    );
+    return;
+  }
+
+  await addToWishlist(product);
+
+  toast.success(
+    isHebrew
+      ? "נוסף למועדפים"
+      : "Saved to your wishlist"
+  );
+};
 
   const share = async () => {
     const url = window.location.href;
