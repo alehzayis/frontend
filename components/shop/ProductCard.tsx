@@ -46,29 +46,28 @@ export default function ProductCard({ product }: { product: ShopProduct }) {
   const rating = product.ratingAverage || 0;
   const currency = product.currency || "usd";
 
-  const toggleWishlist = (e: React.MouseEvent) => {
-    e.preventDefault();
+const toggleWishlist = async (e: React.MouseEvent) => {
+  e.preventDefault();
+  e.stopPropagation();
 
-    if (isWishlisted) {
-      removeFromWishlist(product._id);
-      toast(isHebrew ? "הוסר מהמועדפים" : "Removed from your wishlist");
-      return;
-    }
+  if (isWishlisted) {
+    await removeFromWishlist(product._id);
+    toast(
+      isHebrew
+        ? "הוסר מהמועדפים"
+        : "Removed from your wishlist"
+    );
+    return;
+  }
 
-    addToWishlist({
-      _id: product._id,
-      title: product.title,
-      slug: product.slug,
-      author: product.author,
-      price: product.price,
-      compareAtPrice: product.compareAtPrice,
-      currency,
-      image: cover || null,
-      format: product.format,
-      language: product.language,
-    });
-    toast.success(isHebrew ? "נוסף למועדפים" : "Saved to your wishlist");
-  };
+  await addToWishlist(product);
+
+  toast.success(
+    isHebrew
+      ? "נוסף למועדפים"
+      : "Saved to your wishlist"
+  );
+};
 
   const addToCart = (e: React.MouseEvent) => {
     e.preventDefault();
