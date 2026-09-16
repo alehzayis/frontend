@@ -10,7 +10,7 @@ import ProductCard from "@/components/shop/ProductCard";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-export default function WishlistPage() {
+const WishlistPage = () => {
   const items = useWishlistStore((s) => s.items);
   const ready = useWishlistStore((s) => s.ready);
   const init = useWishlistStore((s) => s.init);
@@ -91,4 +91,6 @@ export default function WishlistPage() {
       <Footer />
     </>
   );
-}
+};
+
+export default WishlistPage;
