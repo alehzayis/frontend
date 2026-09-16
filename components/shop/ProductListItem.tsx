@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import { BookOpen } from "lucide-react";
 import { ShopProduct } from "@/components/shop/shopTypes";
@@ -8,16 +7,15 @@ import { ShopProduct } from "@/components/shop/shopTypes";
 type Props = {
   product: ShopProduct;
   variant: "row" | "orderForm";
+  quantity?: number;
   onQuantityChange?: (productId: string, quantity: number) => void;
 };
 
-export default function ProductListItem({ product, variant, onQuantityChange }: Props) {
-  const [quantity, setQuantity] = useState(0);
+export default function ProductListItem({ product, variant, quantity = 0, onQuantityChange }: Props) {
   const cover = product.images?.[0]?.url;
 
   const updateQuantity = (next: number) => {
     const clamped = Math.max(0, next);
-    setQuantity(clamped);
     onQuantityChange?.(product._id, clamped);
   };
 

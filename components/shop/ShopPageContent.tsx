@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "sonner";
 import api from "@/lib/api";
+import { useCartStore } from "@/lib/store/cartStore";
 import Breadcrumb from "@/components/shop/Breadcrumb";
 import ShopControls, { ViewMode } from "@/components/shop/ShopControls";
 import ProductFilters from "@/components/shop/ProductFilters";
@@ -17,6 +18,7 @@ import Footer from "@/components/Footer";
 export default function ShopPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const addItem = useCartStore((s) => s.addItem);
 
   const [products, setProducts] = useState<ShopProduct[]>([]);
   const [loading, setLoading] = useState(true);
@@ -24,6 +26,7 @@ export default function ShopPageContent() {
   const [view, setView] = useState<ViewMode>("grid");
   const [searchInput, setSearchInput] = useState(searchParams.get("search") || "");
   const [orderQuantities, setOrderQuantities] = useState<Record<string, number>>({});
+  const [addingSelected, setAddingSelected] = useState(false);
 
   const sort = searchParams.get("sort") || "newest";
   const search = searchParams.get("search") || "";
@@ -73,13 +76,35 @@ export default function ShopPageContent() {
       .finally(() => setLoading(false));
   }, [sort, search, formats, languages, category, page]);
 
-  const addSelectedToCart = () => {
+  const addSelectedToCart = async () => {
     const selected = Object.entries(orderQuantities).filter(([, qty]) => qty > 0);
     if (selected.length === 0) {
       toast.error("Select a quantity for at least one book");
       return;
     }
-    toast("Cart isn't wired up yet — this order form is ready as soon as it is.");
+
+    setAddingSelected(true);
+    try {
+      const results = await Promise.allSettled(
+        selected.map(([productId, qty]) => {
+          const product = products.find((p) => p._id === productId);
+          if (!product) return Promise.resolve();
+          return addItem(product, qty);
+        })
+      );
+
+      const failed = results.filter((r) => r.status === "rejected").length;
+      if (failed === 0) {
+        toast.success(selected.length === 1 ? "Added to cart" : `Added ${selected.length} books to cart`);
+        setOrderQuantities({});
+      } else if (failed < results.length) {
+        toast.error("Some books couldn't be added to your cart. Please try again.");
+      } else {
+        toast.error("Couldn't add those books to your cart. Please try again.");
+      }
+    } finally {
+      setAddingSelected(false);
+    }
   };
 
   return (
@@ -130,6 +155,7 @@ export default function ShopPageContent() {
                       key={product._id}
                       product={product}
                       variant={view === "orderForm" ? "orderForm" : "row"}
+                      quantity={orderQuantities[product._id] || 0}
                       onQuantityChange={(id, qty) => setOrderQuantities((prev) => ({ ...prev, [id]: qty }))}
                     />
                   ))}
@@ -137,9 +163,10 @@ export default function ShopPageContent() {
                     <button
                       type="button"
                       onClick={addSelectedToCart}
-                      className="mt-[16px] h-[46px] rounded-[2px] bg-[#4A1521] px-[24px] font-body text-[0.78rem] font-semibold uppercase tracking-[0.15em] text-[#FFF9EF] hover:bg-[#310B13]"
+                      disabled={addingSelected}
+                      className="mt-[16px] h-[46px] rounded-[2px] bg-[#4A1521] px-[24px] font-body text-[0.78rem] font-semibold uppercase tracking-[0.15em] text-[#FFF9EF] hover:bg-[#310B13] disabled:opacity-60"
                     >
-                      Add Selected to Cart
+                      {addingSelected ? "Adding..." : "Add Selected to Cart"}
                     </button>
                   )}
                 </div>

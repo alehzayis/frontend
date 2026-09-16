@@ -65,9 +65,9 @@ export default function Navbar() {
           </nav>
 
           <div className="flex items-center gap-4 sm:gap-5">
-            <button type="button" aria-label="Search" className="hidden h-10 w-10 items-center justify-center text-[#241A1D] transition-colors hover:text-[#9C7A1E] sm:flex">
+            {/* <button type="button" aria-label="Search" className="hidden h-10 w-10 items-center justify-center text-[#241A1D] transition-colors hover:text-[#9C7A1E] sm:flex">
               <Search size={18} strokeWidth={1.6} />
-            </button>
+            </button> */}
 
             <Link
               href="/wishlist"
