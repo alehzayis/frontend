@@ -35,6 +35,19 @@ type CartState = {
 
 const fromServer = (items: CartItem[]) => items.map((i) => ({ product: i.product, quantity: i.quantity }));
 
+// Guards against out-of-order network responses when a user clicks +/- rapidly.
+// Each mutation on a given product gets a version number; a response only gets
+// applied if it's still the latest in-flight request for that product.
+const requestVersions = new Map<string, number>();
+
+const nextVersion = (productId: string) => {
+  const version = (requestVersions.get(productId) || 0) + 1;
+  requestVersions.set(productId, version);
+  return version;
+};
+
+const isStale = (productId: string, version: number) => requestVersions.get(productId) !== version;
+
 export const useCartStore = create<CartState>()(
   persist(
     (set, get) => ({
@@ -61,10 +74,14 @@ export const useCartStore = create<CartState>()(
         set({ items: nextItems });
         if (!isLoggedIn) return;
 
+        const version = nextVersion(product._id);
+
         try {
           const res = await api.post("/api/cart/items", { productId: product._id, quantity });
+          if (isStale(product._id, version)) return;
           set({ items: fromServer(res.data.data.items) });
         } catch (err: any) {
+          if (isStale(product._id, version)) return;
           set({ items });
           toast.error(err?.response?.data?.message || "Couldn't add that to your cart");
         }
@@ -80,10 +97,14 @@ export const useCartStore = create<CartState>()(
         set({ items: nextItems });
         if (!isLoggedIn) return;
 
+        const version = nextVersion(productId);
+
         try {
           const res = await api.patch(`/api/cart/items/${productId}`, { quantity });
+          if (isStale(productId, version)) return;
           set({ items: fromServer(res.data.data.items) });
         } catch (err: any) {
+          if (isStale(productId, version)) return;
           set({ items });
           toast.error(err?.response?.data?.message || "Couldn't update that item");
         }
@@ -94,10 +115,14 @@ export const useCartStore = create<CartState>()(
         set({ items: items.filter((i) => i.product._id !== productId) });
         if (!isLoggedIn) return;
 
+        const version = nextVersion(productId);
+
         try {
           const res = await api.delete(`/api/cart/items/${productId}`);
+          if (isStale(productId, version)) return;
           set({ items: fromServer(res.data.data.items) });
         } catch (err: any) {
+          if (isStale(productId, version)) return;
           set({ items });
           toast.error(err?.response?.data?.message || "Couldn't remove that item");
         }

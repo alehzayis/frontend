@@ -1,11 +1,11 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import { toast } from "sonner";
 import { BookOpen, Heart, Minus, Plus, ShoppingCart, Star } from "lucide-react";
 import { ShopProduct } from "@/components/shop/shopTypes";
 import { useCartStore } from "@/lib/store/cartStore";
+import { useWishlistStore } from "@/lib/store/wishlistStore";
 
 const CURRENCY_SYMBOLS: Record<string, string> = {
   usd: "$",
@@ -30,12 +30,15 @@ const getBadge = (product: ShopProduct) => {
 };
 
 export default function ProductCard({ product }: { product: ShopProduct }) {
-  const [wishlisted, setWishlisted] = useState(false);
   const addItem = useCartStore((s) => s.addItem);
   const updateQuantity = useCartStore((s) => s.updateQuantity);
   const quantityInCart = useCartStore(
     (s) => s.items.find((i) => i.product._id === product._id)?.quantity || 0
   );
+
+  const isWishlisted = useWishlistStore((s) => s.items.some((i) => i._id === product._id));
+  const addToWishlist = useWishlistStore((s) => s.addItem);
+  const removeFromWishlist = useWishlistStore((s) => s.removeItem);
 
   const cover = product.images?.[0]?.url;
   const badge = getBadge(product);
@@ -45,8 +48,26 @@ export default function ProductCard({ product }: { product: ShopProduct }) {
 
   const toggleWishlist = (e: React.MouseEvent) => {
     e.preventDefault();
-    setWishlisted((prev) => !prev);
-    toast("Wishlists aren't wired up yet — this will save for later once they are.");
+
+    if (isWishlisted) {
+      removeFromWishlist(product._id);
+      toast(isHebrew ? "הוסר מהמועדפים" : "Removed from your wishlist");
+      return;
+    }
+
+    addToWishlist({
+      _id: product._id,
+      title: product.title,
+      slug: product.slug,
+      author: product.author,
+      price: product.price,
+      compareAtPrice: product.compareAtPrice,
+      currency,
+      image: cover || null,
+      format: product.format,
+      language: product.language,
+    });
+    toast.success(isHebrew ? "נוסף למועדפים" : "Saved to your wishlist");
   };
 
   const addToCart = (e: React.MouseEvent) => {
@@ -94,13 +115,14 @@ export default function ProductCard({ product }: { product: ShopProduct }) {
         <button
           type="button"
           onClick={toggleWishlist}
-          aria-label="Save for later"
+          aria-label={isWishlisted ? "Remove from wishlist" : "Save for later"}
+          aria-pressed={isWishlisted}
           className="absolute right-[10px] top-[10px] flex h-[32px] w-[32px] items-center justify-center rounded-full bg-white shadow-[0_2px_8px_rgba(0,0,0,0.12)]"
         >
           <Heart
             size={15}
             strokeWidth={1.8}
-            className={wishlisted ? "fill-[#4A1521] text-[#4A1521]" : "text-[#4A1521]/60"}
+            className={isWishlisted ? "fill-[#4A1521] text-[#4A1521]" : "text-[#4A1521]/60"}
           />
         </button>
 

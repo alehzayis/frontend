@@ -28,6 +28,7 @@ import Breadcrumb from "@/components/shop/Breadcrumb";
 import ProductCard from "@/components/shop/ProductCard";
 import { ProductDetail, ShopProduct } from "@/components/shop/shopTypes";
 import { useCartStore } from "@/lib/store/cartStore";
+import { useWishlistStore } from "@/lib/store/wishlistStore";
 
 const CURRENCY_SYMBOLS: Record<string, string> = {
   usd: "$",
@@ -71,11 +72,18 @@ export default function ProductDetailPage() {
   const [notFound, setNotFound] = useState(false);
   const [activeImage, setActiveImage] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
-  const [wishlisted, setWishlisted] = useState(false);
   const [qty, setQty] = useState(1);
   const [tab, setTab] = useState<"description" | "reviews">("description");
 
   const addItem = useCartStore((s) => s.addItem);
+  const updateQuantity = useCartStore((s) => s.updateQuantity);
+  const cartQuantity = useCartStore(
+    (s) => s.items.find((i) => i.product._id === product?._id)?.quantity ?? 0
+  );
+
+  const isWishlisted = useWishlistStore((s) => s.items.some((i) => i._id === product?._id));
+  const addToWishlist = useWishlistStore((s) => s.addItem);
+  const removeFromWishlist = useWishlistStore((s) => s.removeItem);
 
   useEffect(() => {
     if (!params?.slug) return;
@@ -152,6 +160,7 @@ export default function ProductDetailPage() {
   const rating = product.ratingAverage || 0;
   const isDigitalOnly = product.format === "ebook";
   const inStock = isDigitalOnly || (product.stock ?? 0) > 0;
+  const displayQty = cartQuantity > 0 ? cartQuantity : qty;
 
   const addToCart = () => {
     addItem(
@@ -171,9 +180,42 @@ export default function ProductDetailPage() {
     toast.success(isHebrew ? "נוסף לסל" : "Added to cart");
   };
 
+  const decreaseQty = () => {
+    if (cartQuantity > 0) {
+      updateQuantity(product._id, cartQuantity - 1);
+    } else {
+      setQty((q) => Math.max(1, q - 1));
+    }
+  };
+
+  const increaseQty = () => {
+    if (cartQuantity > 0) {
+      updateQuantity(product._id, cartQuantity + 1);
+    } else {
+      setQty((q) => q + 1);
+    }
+  };
+
   const toggleWishlist = () => {
-    setWishlisted((v) => !v);
-    toast("Wishlists aren't wired up yet — this will save for later once they are.");
+    if (isWishlisted) {
+      removeFromWishlist(product._id);
+      toast(isHebrew ? "הוסר מהמועדפים" : "Removed from your wishlist");
+      return;
+    }
+
+    addToWishlist({
+      _id: product._id,
+      title: product.title,
+      slug: product.slug,
+      author: product.author,
+      price: product.price,
+      compareAtPrice: product.compareAtPrice,
+      currency,
+      image: images[0]?.url || null,
+      format: product.format,
+      language: product.language,
+    });
+    toast.success(isHebrew ? "נוסף למועדפים" : "Saved to your wishlist");
   };
 
   const share = async () => {
@@ -298,23 +340,26 @@ export default function ProductDetailPage() {
 
                 {inStock && (
                   <div className={`mt-[16px] flex items-center gap-[12px] ${isHebrew ? "flex-row-reverse" : ""}`}>
-                    <div className="flex items-center gap-[14px] rounded-[2px] border border-[#4A1521]/20 px-[14px] py-[12px]">
+                    <div className="flex items-center gap-[10px] rounded-[2px] border border-[#4A1521]/20 px-[10px] py-[9px]">
                       <button
                         type="button"
-                        onClick={() => setQty((q) => Math.max(1, q - 1))}
+                        onClick={decreaseQty}
                         aria-label="Decrease quantity"
-                        className="text-[#4A1521]"
+                        className="flex h-[28px] w-[28px] items-center justify-center text-[#4A1521]"
                       >
                         <Minus size={14} strokeWidth={2.2} />
                       </button>
-                      <span className="min-w-[16px] text-center font-body text-[0.9rem] font-semibold text-[#3A101A]">
-                        {qty}
+                      <span
+                        aria-live="polite"
+                        className="min-w-[16px] text-center font-body text-[0.9rem] font-semibold text-[#3A101A]"
+                      >
+                        {displayQty}
                       </span>
                       <button
                         type="button"
-                        onClick={() => setQty((q) => q + 1)}
+                        onClick={increaseQty}
                         aria-label="Increase quantity"
-                        className="text-[#4A1521]"
+                        className="flex h-[28px] w-[28px] items-center justify-center text-[#4A1521]"
                       >
                         <Plus size={14} strokeWidth={2.2} />
                       </button>
@@ -326,7 +371,7 @@ export default function ProductDetailPage() {
                       className="flex h-[46px] flex-1 items-center justify-center gap-[10px] rounded-[2px] bg-[#4A1521] font-body text-[0.78rem] font-semibold uppercase tracking-[0.15em] text-[#FFF9EF] hover:bg-[#310B13]"
                     >
                       <ShoppingCart size={16} strokeWidth={1.8} />
-                      Add to Cart
+                      {cartQuantity > 0 ? "Add More" : "Add to Cart"}
                     </button>
                   </div>
                 )}
@@ -335,10 +380,11 @@ export default function ProductDetailPage() {
                   <button
                     type="button"
                     onClick={toggleWishlist}
+                    aria-pressed={isWishlisted}
                     className="flex h-[42px] flex-1 items-center justify-center gap-[8px] rounded-[2px] border border-[#4A1521]/20 font-body text-[0.76rem] font-semibold text-[#4A1521] hover:border-[#4A1521]"
                   >
-                    <Heart size={14} strokeWidth={1.8} className={wishlisted ? "fill-[#4A1521]" : ""} />
-                    Wishlist
+                    <Heart size={14} strokeWidth={1.8} className={isWishlisted ? "fill-[#4A1521]" : ""} />
+                    {isWishlisted ? "Wishlisted" : "Wishlist"}
                   </button>
                   <button
                     type="button"

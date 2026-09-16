@@ -4,7 +4,9 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { ChevronDown, Search } from "lucide-react";
+import { ChevronDown, Heart, Search } from "lucide-react";
+import { useCartCount, useCartStore } from "@/lib/store/cartStore";
+import { useWishlistCount, useWishlistStore } from "@/lib/store/wishlistStore";
 
 const NAV_LINKS = [
   { href: "/", label: "Home" },
@@ -18,6 +20,14 @@ const NAV_LINKS = [
 export default function Navbar() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  const cartCount = useCartCount();
+  const wishlistCount = useWishlistCount();
+
+  useEffect(() => {
+    useCartStore.getState().init();
+    useWishlistStore.getState().init();
+  }, []);
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
@@ -60,6 +70,19 @@ export default function Navbar() {
             </button>
 
             <Link
+              href="/wishlist"
+              aria-label="Wishlist"
+              className="relative hidden h-10 w-10 items-center justify-center text-[#241A1D] transition-colors hover:text-[#9C7A1E] sm:flex"
+            >
+              <Heart size={18} strokeWidth={1.6} />
+              {wishlistCount > 0 && (
+                <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-gradient-to-b from-[#E8C264] to-[#B8891F] text-[0.6rem] font-bold text-[#2B1A05]">
+                  {wishlistCount > 99 ? "99+" : wishlistCount}
+                </span>
+              )}
+            </Link>
+
+            <Link
               href="/cart"
               aria-label="Shopping cart"
               className="relative hidden h-10 w-10 items-center justify-center text-[#241A1D] sm:flex"
@@ -69,9 +92,11 @@ export default function Navbar() {
                 <line x1="3" y1="6" x2="21" y2="6" />
                 <path d="M16 10a4 4 0 0 1-8 0" />
               </svg>
-              <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-gradient-to-b from-[#E8C264] to-[#B8891F] text-[0.6rem] font-bold text-[#2B1A05]">
-                0
-              </span>
+              {cartCount > 0 && (
+                <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-gradient-to-b from-[#E8C264] to-[#B8891F] text-[0.6rem] font-bold text-[#2B1A05]">
+                  {cartCount > 99 ? "99+" : cartCount}
+                </span>
+              )}
             </Link>
 
             <span aria-hidden="true" className="hidden h-6 w-px bg-[#4A1521]/15 sm:block" />
@@ -124,6 +149,40 @@ export default function Navbar() {
               <line x1="6" y1="6" x2="18" y2="18" />
             </svg>
           </button>
+        </div>
+
+        <div className="flex items-center gap-3 border-b border-[#4A1521]/10 px-8 py-5">
+          <Link
+            href="/wishlist"
+            onClick={() => setMobileOpen(false)}
+            className="relative flex h-11 w-11 items-center justify-center rounded-sm border border-[#4A1521]/10 text-[#4A1521]"
+            aria-label="Wishlist"
+          >
+            <Heart size={18} strokeWidth={1.6} />
+            {wishlistCount > 0 && (
+              <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-gradient-to-b from-[#E8C264] to-[#B8891F] text-[0.6rem] font-bold text-[#2B1A05]">
+                {wishlistCount > 99 ? "99+" : wishlistCount}
+              </span>
+            )}
+          </Link>
+
+          <Link
+            href="/cart"
+            onClick={() => setMobileOpen(false)}
+            className="relative flex h-11 w-11 items-center justify-center rounded-sm border border-[#4A1521]/10 text-[#4A1521]"
+            aria-label="Shopping cart"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+              <line x1="3" y1="6" x2="21" y2="6" />
+              <path d="M16 10a4 4 0 0 1-8 0" />
+            </svg>
+            {cartCount > 0 && (
+              <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-gradient-to-b from-[#E8C264] to-[#B8891F] text-[0.6rem] font-bold text-[#2B1A05]">
+                {cartCount > 99 ? "99+" : cartCount}
+              </span>
+            )}
+          </Link>
         </div>
 
         <ul className="flex flex-col gap-1.5 px-8 py-10">
