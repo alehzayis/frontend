@@ -328,36 +328,36 @@ export default function Hero() {
 
 
 
-"use client";
+// "use client";
 
-import { useEffect, useState } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+// import { useEffect, useState } from "react";
+// import Link from "next/link";
+// import Image from "next/image";
+// import { ArrowLeft, ArrowRight } from "lucide-react";
 
-const slides = [
-  {
-    index: "01",
-    label: "MANUSCRIPTS",
-    title: "A Legacy of Torah",
-    subtitle: "From timeless manuscripts to a brighter tomorrow.",
-    image: "/assets/manuscripts.png",
-  },
-  {
-    index: "02",
-    label: "SEFORIM",
-    title: "Bound With Devotion",
-    subtitle: "Every sefer, crafted to be treasured for generations.",
-    image: "/assets/printing.png",
-  },
-  {
-    index: "03",
-    label: "PUBLISHING",
-    title: "Crafted With Purpose",
-    subtitle: "Every sefer deserves the highest level of care.",
-    image: "/assets/editing.png",
-  },
-];
+// const slides = [
+//   {
+//     index: "01",
+//     label: "MANUSCRIPTS",
+//     title: "A Legacy of Torah",
+//     subtitle: "From timeless manuscripts to a brighter tomorrow.",
+//     image: "/assets/manuscripts.png",
+//   },
+//   {
+//     index: "02",
+//     label: "SEFORIM",
+//     title: "Bound With Devotion",
+//     subtitle: "Every sefer, crafted to be treasured for generations.",
+//     image: "/assets/printing.png",
+//   },
+//   {
+//     index: "03",
+//     label: "PUBLISHING",
+//     title: "Crafted With Purpose",
+//     subtitle: "Every sefer deserves the highest level of care.",
+//     image: "/assets/editing.png",
+//   },
+// ];
 
 // export default function Hero() {
 //   const [active, setActive] = useState(0);
