@@ -32,14 +32,14 @@ const slides = [
     label: "Editing",
     title: "Editing with Scholarship",
     subtitle: "Refining the mechaber's language, line by line.",
-    image: "/assets/editing-new.png",
+    image: "/assets/editing-img.png",
   },
   {
     index: "05",
     label: "Consulting",
     title: "Consulting with Insight",
     subtitle: "Guiding mechabrim on content, layout, and print.",
-    image: "/assets/consultations.png",
+    image: "/assets/consultations-new.png",
   },
   {
     index: "06",
