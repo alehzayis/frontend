@@ -359,6 +359,10 @@ const QUOTE_HREF = "/contact";
 // Each card takes the next colour in turn: top edge and icon at rest, the whole card on hover.
 const ACCENTS = ["#4A1521", "#1C3326", "#1B2740", "#4A2A1B"];
 
+// Faint ruled lines drawn over the card's colour on hover (1px line every 17.5px).
+const RULED_LINES =
+  "repeating-linear-gradient(to bottom, transparent 0, transparent 16.5px, rgba(255,255,255,0.036) 16.5px, rgba(255,255,255,0.036) 17.5px)";
+
 /*
   How the hover works
   - At rest a card shows its icon, title and keywords.
@@ -386,8 +390,8 @@ export default function Services() {
             <article
               key={service.title}
               tabIndex={0}
-              style={{ "--accent": ACCENTS[i % ACCENTS.length] } as CSSProperties}
-              className="group relative flex flex-col border border-t-[3px] border-[#4A1521]/[0.12] border-t-[color:var(--accent)] bg-[#FAF2E5] px-7 pb-6 pt-8 outline-none !transition-none !animate-none focus-visible:bg-[color:var(--accent)] [&_*]:!transition-none [&_*]:!animate-none [@media(hover:hover)]:hover:bg-[color:var(--accent)]"
+              style={{ "--accent": ACCENTS[i % ACCENTS.length], "--ruled": RULED_LINES } as CSSProperties}
+              className="group relative flex flex-col border border-t-[3px] border-[#4A1521]/[0.12] border-t-[color:var(--accent)] bg-[#FAF2E5] px-7 pb-6 pt-8 outline-none !transition-none !animate-none focus-visible:bg-[color:var(--accent)] focus-visible:bg-[image:var(--ruled)] [&_*]:!transition-none [&_*]:!animate-none [@media(hover:hover)]:hover:bg-[color:var(--accent)] [@media(hover:hover)]:hover:bg-[image:var(--ruled)]"
             >
               {/* Corner ticks */}
               <span aria-hidden="true" className="absolute left-2.5 top-2.5 h-2.5 w-2.5 border-l border-t border-[#C59B27]" />
