@@ -32,7 +32,7 @@ const slides = [
     label: "Editing",
     title: "Editing with Scholarship",
     subtitle: "Refining the mechaber's language, line by line.",
-    image: "/assets/editing.png",
+    image: "/assets/editing-new.png",
   },
   {
     index: "05",
