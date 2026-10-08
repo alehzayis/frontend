@@ -1,221 +1,446 @@
-// import { Layers3, BookOpen, PenLine, Keyboard, Mic, Languages, Circle, BookMarked, Printer, Globe2, Users, ArrowRight } from "lucide-react";
+// // import type { CSSProperties } from "react";
+// // import Link from "next/link";
+// // import {
+// //   ArrowRight,
+// //   Book,
+// //   BookMarked,
+// //   Keyboard,
+// //   Languages,
+// //   Layers,
+// //   Mic,
+// //   Palette,
+// //   PenLine,
+// //   Printer,
+// //   Sparkles,
+// //   Truck,
+// // } from "lucide-react";
 
-// const themes = {
-//   maroon: { from: "#4A1521", to: "#2B0B12" },
-//   green: { from: "#1C3326", to: "#10201A" },
-//   navy: { from: "#1B2740", to: "#0F1729" },
-// };
+// // const SERVICES = [
+// //   {
+// //     title: "Full Service",
+// //     icon: Layers,
+// //     text: "Meticulous transcription, typesetting, and editing across every genre, fully customized layouts.",
+// //   },
+// //   {
+// //     title: "Content",
+// //     icon: Book,
+// //     text: "In-house talmidei chachamim advising on content across derush, halacha, machshava, chassidus, and Kabbalah.",
+// //   },
+// //   {
+// //     title: "Editing, Hebrew & English",
+// //     icon: PenLine,
+// //     text: "Skilled editors polish manuscripts while preserving personal style.",
+// //   },
+// //   {
+// //     title: "Typing, Hebrew & English",
+// //     icon: Keyboard,
+// //     text: "Dedicated typists convert handwritten notes into distribution-ready manuscripts.",
+// //   },
+// //   {
+// //     title: "Transcriptions",
+// //     icon: Mic,
+// //     text: "Audio (family interviews, shiurim, lectures) transcribed in English, Hebrew, or Yiddish.",
+// //   },
+// //   {
+// //     title: "Translations",
+// //     icon: Languages,
+// //     text: "Between English, Hebrew, and Yiddish, reviewed for accuracy and style.",
+// //   },
+// //   {
+// //     title: "Graphics",
+// //     icon: Palette,
+// //     text: "Custom covers, dedication pages, flyers and more, designed around your vision.",
+// //   },
+// //   {
+// //     title: "Covers",
+// //     icon: BookMarked,
+// //     text: "Hard or soft, foil-stamped or printed, antique leather and more to make your sefer stand out.",
+// //   },
+// //   {
+// //     title: "Printing & Binding",
+// //     icon: Printer,
+// //     text: "Digital or offset, black and white or color, with sewn, spiral, or saddle-stitched binding.",
+// //   },
+// //   {
+// //     title: "Shipping & Distribution",
+// //     icon: Truck,
+// //     text: "Your sefer delivered across the globe through leading book distributors.",
+// //   },
+// //   {
+// //     title: "Fiction, Non-Fiction & Family Memorial Books",
+// //     icon: Sparkles,
+// //     text: "Research, transcription, translation, editing, layout, and design for your family's story, at whatever stage you need.",
+// //   },
+// // ];
 
-// const services = [
-//   { title: "Full Service", description: "Meticulous transcription, typesetting, and editing across every genre, fully customized layouts.", detail: "One dedicated team guiding your sefer from first draft to final print.", tags: ["Transcription", "Typesetting", "Editing"], theme: "maroon", icon: Layers3 },
-//   { title: "Content", description: "In-house talmidei chachamim advising on content across derush, halacha, machshava, chassidus, and Kabbalah.", detail: "Guidance on structure, sources, and clarity from experienced talmidei chachamim.", tags: ["Derush", "Halacha", "Machshava"], theme: "green", icon: BookOpen },
-//   { title: "Editing, Hebrew & English", description: "Skilled editors polish manuscripts while preserving personal style and authenticity.", detail: "Language, flow, and footnotes refined while your voice stays your own.", tags: ["Polish", "Proofread", "Style"], theme: "navy", icon: PenLine },
-//   { title: "Typing, Hebrew & English", description: "Dedicated typists convert handwritten notes into distribution-ready manuscripts.", detail: "Clean, accurate manuscripts from even the most difficult handwriting.", tags: ["Hebrew", "English", "Handwritten"], theme: "green", icon: Keyboard },
-//   { title: "Transcriptions", description: "Audio (family interviews, shiurim, lectures) transcribed in English, Hebrew, or Yiddish.", detail: "Every word captured faithfully, from recording to readable page.", tags: ["Interviews", "Shiurim", "Lectures"], theme: "maroon", icon: Mic },
-//   { title: "Translations", description: "Between English, Hebrew, and Yiddish, reviewed for accuracy and style.", detail: "Faithful to the source, natural in the language it is translated into.", tags: ["English", "Hebrew", "Yiddish"], theme: "navy", icon: Languages },
-//   { title: "Graphics", description: "Cover art, dedication pages, and flyers, designed to give your sefer a distinct visual identity.", detail: "Designs that reflect the character and spirit of your sefer.", tags: ["Covers", "Dedications", "Flyers"], theme: "navy", icon: Circle },
-//   { title: "Covers", description: "Hard/soft, foil-stamped, antique leather, and more.", detail: "Choose the finish that suits your sefer, from classic to luxurious.", tags: ["Hard", "Soft", "Foil-Stamped"], theme: "green", icon: BookMarked },
-//   { title: "Printing & Binding", description: "Digital or offset, sewn/spiral/saddle-stitched binding options.", detail: "Print runs of any size, bound to last for generations.", tags: ["Digital", "Offset", "Sewn"], theme: "maroon", icon: Printer },
-//   { title: "Shipping & Distribution", description: "Strong distributor relationships for international reach.", detail: "Your sefer, delivered to shops and homes around the world.", tags: ["Distributors", "International", "Delivery"], theme: "green", icon: Globe2 },
-//   { title: "Fiction, Non-Fiction & Family Memorial Books", description: "Full-service research through final design.", detail: "A complete journey from research and writing to design and print.", tags: ["Fiction", "Non-Fiction", "Memorial"], theme: "navy", icon: Users, wide: true },
-// ] as const;
+// // const QUOTE_HREF = "/contact";
+
+// // // Each card takes the next colour in turn: top edge and icon at rest, the whole card on hover.
+// // const ACCENTS = ["#4A1521", "#1C3326", "#1B2740", "#4A2A1B"];
+
+// // export default function Services() {
+// //   return (
+// //     <section id="services" className="bg-[#FAF6EE] px-6 py-16 lg:py-24">
+// //       <div className="mx-auto max-w-[1200px]">
+// //         <div className="text-center">
+// //           <span className="mb-4 inline-flex items-center gap-2.5 font-body text-xs font-semibold uppercase tracking-[0.24em] text-[#9C7A1E]">
+// //             <span className="h-px w-5 bg-current opacity-60" />
+// //             What We Offer
+// //             <span className="h-px w-5 bg-current opacity-60" />
+// //           </span>
+// //           <h2 className="font-display text-[2.55rem] font-medium leading-[1.2] text-[#4A1521]">Every service, in-house.</h2>
+// //         </div>
+
+// //         <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:mt-12 lg:grid-cols-3">
+// //           {SERVICES.map((service, i) => (
+// //             <article
+// //               key={service.title}
+// //               style={{ "--accent": ACCENTS[i % ACCENTS.length] } as CSSProperties}
+// //               // No transition anywhere on the card: on hover the colour simply appears.
+// //               // The ! classes also switch off any transition or animation coming from global styles.
+// //               className="group relative border border-t-[3px] border-[#4A1521]/[0.12] border-t-[color:var(--accent)] bg-[#FAF2E5] px-7 pb-8 pt-9 !transition-none !animate-none hover:bg-[color:var(--accent)] [&_*]:!transition-none [&_*]:!animate-none"
+// //             >
+// //               {/* Corner ticks */}
+// //               <span aria-hidden="true" className="absolute left-2.5 top-2.5 h-2.5 w-2.5 border-l border-t border-[#C59B27]" />
+// //               <span aria-hidden="true" className="absolute bottom-2.5 right-2.5 h-2.5 w-2.5 border-b border-r border-[#C59B27]" />
+
+// //               <service.icon size={34} strokeWidth={1.4} className="text-[color:var(--accent)] group-hover:text-[#E0BA53]" />
+
+// //               <h3 className="mt-6 font-display text-[1.45rem] font-medium leading-snug text-[#3A101A] group-hover:text-[#F7E9C2]">
+// //                 {service.title}
+// //               </h3>
+// //               <p className="mt-3 font-body text-[1rem] leading-[1.75] text-[#5C4B46] group-hover:text-[#EDE1D3]">{service.text}</p>
+// //             </article>
+// //           ))}
+
+// //           {/* Twelfth tile: call to action */}
+// //           <div className="flex flex-col justify-center border border-[#C59B27]/50 bg-[#3A101A] px-7 py-8">
+// //             <div className="font-display text-[1.45rem] font-medium leading-snug text-[#F7E9C2]">Not sure where to start?</div>
+// //             <p className="mt-3 font-body text-[1rem] leading-[1.75] text-[#EDE1D3]">
+// //               Tell us about your sefer or manuscript and we&apos;ll put together a quote.
+// //             </p>
+// //             <Link
+// //               href={QUOTE_HREF}
+// //               className="mt-5 inline-flex w-fit items-center gap-2 rounded-sm bg-[#C59B27] px-6 py-3 font-body text-[0.8rem] font-semibold uppercase tracking-[0.12em] text-[#2B0B12] hover:bg-[#D6AE3C] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F7E9C2]"
+// //             >
+// //               Request a quote
+// //               <ArrowRight size={15} strokeWidth={2} />
+// //             </Link>
+// //           </div>
+// //         </div>
+// //       </div>
+// //     </section>
+// //   );
+// // }
+
+// import type { CSSProperties } from "react";
+// import Link from "next/link";
+// import {
+//   ArrowRight,
+//   Book,
+//   BookMarked,
+//   Keyboard,
+//   Languages,
+//   Layers,
+//   Mic,
+//   Palette,
+//   PenLine,
+//   Printer,
+//   Sparkles,
+//   Truck,
+// } from "lucide-react";
+
+// const SERVICES = [
+//   {
+//     title: "Full Service",
+//     icon: Layers,
+//     text: "Meticulous transcription, typesetting, and editing across every genre, fully customized layouts.",
+//   },
+//   {
+//     title: "Content",
+//     icon: Book,
+//     text: "In-house talmidei chachamim advising on content across derush, halacha, machshava, chassidus, and Kabbalah.",
+//   },
+//   {
+//     title: "Editing, Hebrew & English",
+//     icon: PenLine,
+//     text: "Skilled editors polish manuscripts while preserving personal style.",
+//   },
+//   {
+//     title: "Typing, Hebrew & English",
+//     icon: Keyboard,
+//     text: "Dedicated typists convert handwritten notes into distribution-ready manuscripts.",
+//   },
+//   {
+//     title: "Transcriptions",
+//     icon: Mic,
+//     text: "Audio (family interviews, shiurim, lectures) transcribed in English, Hebrew, or Yiddish.",
+//   },
+//   {
+//     title: "Translations",
+//     icon: Languages,
+//     text: "Between English, Hebrew, and Yiddish, reviewed for accuracy and style.",
+//   },
+//   {
+//     title: "Graphics",
+//     icon: Palette,
+//     text: "Custom covers, dedication pages, flyers and more, designed around your vision.",
+//   },
+//   {
+//     title: "Covers",
+//     icon: BookMarked,
+//     text: "Hard or soft, foil-stamped or printed, antique leather and more to make your sefer stand out.",
+//   },
+//   {
+//     title: "Printing & Binding",
+//     icon: Printer,
+//     text: "Digital or offset, black and white or color, with sewn, spiral, or saddle-stitched binding.",
+//   },
+//   {
+//     title: "Shipping & Distribution",
+//     icon: Truck,
+//     text: "Your sefer delivered across the globe through leading book distributors.",
+//   },
+//   {
+//     title: "Fiction, Non-Fiction & Family Memorial Books",
+//     icon: Sparkles,
+//     text: "Research, transcription, translation, editing, layout, and design for your family's story, at whatever stage you need.",
+//   },
+// ];
+
+// const QUOTE_HREF = "/contact";
+
+// // Each card takes the next colour in turn: top edge and icon at rest, the whole card on hover.
+// const ACCENTS = ["#4A1521", "#1C3326", "#1B2740", "#4A2A1B"];
 
 // export default function Services() {
 //   return (
-//     <section id="services" className="bg-[#FBF7EF] py-4 lg:py-[40px]">
-//       <div className="mx-auto w-full max-w-[1200px] px-6">
-//         <div className="mb-[60px] text-center">
-//           <div className="mb-4 inline-flex items-center justify-center gap-[10px] font-body text-[0.78rem] font-semibold uppercase tracking-[0.24em] text-[#9C7A1E]">
+//     <section id="services" className="bg-[#FAF6EE] px-6 py-16 lg:py-24">
+//       <div className="mx-auto max-w-[1200px]">
+//         <div className="text-center">
+//           <span className="mb-4 inline-flex items-center gap-2.5 font-body text-xs font-semibold uppercase tracking-[0.24em] text-[#9C7A1E]">
 //             <span className="h-px w-5 bg-current opacity-60" />
-//             Master Craftsmen
+//             What We Offer
 //             <span className="h-px w-5 bg-current opacity-60" />
+//           </span>
+//           <h2 className="font-display text-[2.55rem] font-medium leading-[1.2] text-[#4A1521]">Every service, in-house.</h2>
+//         </div>
+
+//         <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:mt-12 lg:grid-cols-3">
+//           {SERVICES.map((service, i) => (
+//             <article
+//               key={service.title}
+//               style={{ "--accent": ACCENTS[i % ACCENTS.length] } as CSSProperties}
+//               // No transition anywhere on the card: on hover the colour simply appears.
+//               // The ! classes also switch off any transition or animation coming from global styles.
+//               className="group relative border border-t-[3px] border-[#4A1521]/[0.12] border-t-[color:var(--accent)] bg-[#FAF2E5] px-7 pb-8 pt-9 transition-none! animate-none! hover:bg-(--accent) **:transition-none! **:animate-none!"
+//             >
+//               {/* Corner ticks */}
+//               <span aria-hidden="true" className="absolute left-2.5 top-2.5 h-2.5 w-2.5 border-l border-t border-[#C59B27]" />
+//               <span aria-hidden="true" className="absolute bottom-2.5 right-2.5 h-2.5 w-2.5 border-b border-r border-[#C59B27]" />
+
+//               <service.icon size={34} strokeWidth={1.4} className="text-(--accent) group-hover:text-brass-light" />
+
+//               <h3 className="mt-6 font-display text-[1.45rem] font-medium leading-snug text-[#3A101A] group-hover:text-[#F7E9C2]">
+//                 {service.title}
+//               </h3>
+//               <p className="mt-3 font-body text-[1rem] leading-[1.75] text-[#5C4B46] group-hover:text-[#EDE1D3]">{service.text}</p>
+//             </article>
+//           ))}
+
+//           {/* Twelfth tile: call to action */}
+//           <div className="flex flex-col justify-center border border-[#C59B27]/50 bg-[#3A101A] px-7 py-8">
+//             <div className="font-display text-[1.45rem] font-medium leading-snug text-[#F7E9C2]">Not sure where to start?</div>
+//             <p className="mt-3 font-body text-[1rem] leading-[1.75] text-[#EDE1D3]">
+//               Tell us about your sefer or manuscript and we&apos;ll put together a quote.
+//             </p>
+//             <Link
+//               href={QUOTE_HREF}
+//               className="mt-5 inline-flex w-fit items-center gap-2 rounded-sm bg-[#C59B27] px-6 py-3 font-body text-[0.8rem] font-semibold uppercase tracking-[0.12em] text-[#2B0B12] hover:bg-[#D6AE3C] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F7E9C2]"
+//             >
+//               Request a quote
+//               <ArrowRight size={15} strokeWidth={2} />
+//             </Link>
 //           </div>
-
-//           <h2 className="mb-6 font-display text-[2.85rem] font-normal leading-tight text-[#4A1521]">
-//             Our <em className="italic text-[#C08A1E]">Services</em>
-//           </h2>
-
-//           <p className="mx-auto max-w-[560px] font-display text-[1.05rem] italic leading-[1.6] text-[#6E5D57]">
-//             A complete range of publishing services, tailored to your sefer.
-//             <br />
-//             From the first idea to the final printed volume, we are with you at every step.
-//           </p>
-//         </div>
-
-//         <div className="grid grid-cols-1 gap-[26px] sm:grid-cols-2 lg:grid-cols-3">
-//           {services.map((service, i) => {
-//             const Icon = service.icon;
-//             const theme = themes[service.theme];
-//             return (
-//               <div
-//                 key={service.title}
-//                 style={{ borderTopColor: theme.from }}
-//                 className={`group relative flex min-w-0 flex-col overflow-hidden border border-[#4A1521]/[0.13] border-t-2 bg-[#FAF4E6] px-7 pb-[30px] pt-[34px] transition-all duration-[350ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-[5px] hover:shadow-[0_20px_34px_-18px_rgba(74,21,33,0.28)] ${"wide" in service ? "lg:col-span-2" : ""}`}
-//               >
-//                 <div
-//                   aria-hidden="true"
-//                   style={{
-//                     backgroundImage: `repeating-linear-gradient(180deg, rgba(255,255,255,0.035) 0px 2px, transparent 2px 28px), linear-gradient(160deg, ${theme.from} 0%, ${theme.to} 100%)`,
-//                   }}
-//                   className="pointer-events-none absolute inset-0 [clip-path:inset(100%_0_0_0)] transition-[clip-path] duration-500 ease-[cubic-bezier(0.65,0,0.35,1)] group-hover:[clip-path:inset(0_0_0_0)]"
-//                 >
-                  
-//                 </div>
-
-//                 <span className="pointer-events-none absolute left-[7px] top-[7px] z-10 h-[9px] w-[9px] border-l border-t border-[#4A1521]/40 transition-colors duration-300 group-hover:border-[#E0BA53]/70" />
-//                 <span className="pointer-events-none absolute bottom-[7px] right-[7px] z-10 h-[9px] w-[9px] border-b border-r border-[#4A1521]/40 transition-colors duration-300 group-hover:border-[#E0BA53]/70" />
-//                 <span className="absolute right-7 top-[34px] z-10 font-display text-[0.85rem] italic text-[#4A1521]/30 transition-colors duration-300 group-hover:text-[#E0BA53]/60 group-hover:delay-200">{String(i + 1).padStart(2, "0")}</span>
-
-//                 <div className="relative z-10 flex flex-1 flex-col">
-//                   <span className="mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-[#F3E6C8] transition-colors duration-300 group-hover:bg-[#E0BA53]/15 group-hover:delay-200">
-//                     <Icon size={28} strokeWidth={1.3} className="text-[#8B5E2F] transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.08] group-hover:-rotate-2 group-hover:text-[#E0BA53] group-hover:delay-200" />
-//                   </span>
-
-//                   <h3 className="mb-[11px] font-display text-[1.34rem] font-semibold leading-tight text-[#4A1521] transition-colors duration-300 group-hover:text-[#E0BA53] group-hover:delay-200">{service.title}</h3>
-//                   <p className="mb-6 font-body text-[0.95rem] leading-[1.65] text-[#6E5D57] transition-colors duration-300 group-hover:text-[#FBF7EF]/90 group-hover:delay-200">{service.description}</p>
-
-//                   <div className="mt-auto grid">
-//                     <div className="col-start-1 row-start-1 flex flex-wrap items-center gap-x-3 gap-y-1 self-end border-t border-[#4A1521]/10 pt-4 font-body text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-[#9C7A1E] transition-opacity duration-200 group-focus-within:opacity-0 group-hover:opacity-0 [@media(hover:none)]:hidden">
-//                       {service.tags.map((tag, t) => (
-//                         <span key={tag} className="flex items-center gap-3">
-//                           {t > 0 && <span className="h-[5px] w-[5px] rotate-45 bg-[#C59B27]" />}
-//                           {tag}
-//                         </span>
-//                       ))}
-//                     </div>
-
-//                     <div className="col-start-1 row-start-1 translate-y-2 opacity-0 transition-all duration-[350ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-focus-within:translate-y-0 group-focus-within:opacity-100 group-hover:translate-y-0 group-hover:opacity-100 [@media(hover:none)]:translate-y-0 [@media(hover:none)]:opacity-100">
-//                       <p className="mb-4 font-display text-[0.95rem] italic leading-[1.5] text-[#9C7A1E] transition-colors duration-300 group-hover:text-[#E0BA53] group-hover:delay-200">{service.detail}</p>
-
-//                       <a href="#" className="flex items-center gap-2 font-body text-[0.72rem] font-semibold uppercase tracking-[0.12em] text-[#4A1521] transition-colors duration-300 hover:!text-[#E0BA53] group-hover:text-[#FBF7EF] group-hover:delay-200">
-//                         <span className="h-px w-8 bg-[#C59B27]" />
-//                         Learn More
-//                         <ArrowRight size={13} strokeWidth={2} />
-//                       </a>
-//                     </div>
-//                   </div>
-//                 </div>
-//               </div>
-//             );
-//           })}
-//         </div>
-
-//         <div className="mt-14 flex items-center justify-center gap-4">
-//           <span className="h-px w-10 bg-[#C59B27]/50" />
-//           <p className="font-display text-[0.95rem] italic text-[#9C7A1E]">&ldquo;Great seforim build greater generations.&rdquo;</p>
-//           <span className="h-px w-10 bg-[#C59B27]/50" />
 //         </div>
 //       </div>
 //     </section>
 //   );
 // }
+import type { CSSProperties } from "react";
+import Link from "next/link";
+import {
+  ArrowRight,
+  Book,
+  BookMarked,
+  Keyboard,
+  Languages,
+  Layers,
+  Mic,
+  Palette,
+  PenLine,
+  Plus,
+  Printer,
+  Sparkles,
+  Truck,
+} from "lucide-react";
 
-"use client" 
-import { Layers3, BookOpen, PenLine, Keyboard, Mic, Languages, Circle, BookMarked, Printer, Globe2, Users, ArrowRight } from "lucide-react";
+const SERVICES = [
+  {
+    title: "Full Service",
+    icon: Layers,
+    tags: ["Transcription", "Editing"],
+    text: "Meticulous transcription, typesetting, and editing across every genre, fully customized layouts.",
+  },
+  {
+    title: "Content",
+    icon: Book,
+    tags: ["Derush", "Halacha", "Machshava"],
+    text: "In-house talmidei chachamim advising on content across derush, halacha, machshava, chassidus, and Kabbalah.",
+  },
+  {
+    title: "Editing, Hebrew & English",
+    icon: PenLine,
+    tags: ["Polish", "Proofread", "Style"],
+    text: "Skilled editors polish manuscripts while preserving personal style.",
+  },
+  {
+    title: "Typing, Hebrew & English",
+    icon: Keyboard,
+    tags: ["Hebrew", "English", "Handwritten"],
+    text: "Dedicated typists convert handwritten notes into distribution-ready manuscripts.",
+  },
+  {
+    title: "Transcriptions",
+    icon: Mic,
+    tags: ["Interviews", "Shiurim", "Lectures"],
+    text: "Audio (family interviews, shiurim, lectures) transcribed in English, Hebrew, or Yiddish.",
+  },
+  {
+    title: "Translations",
+    icon: Languages,
+    tags: ["English", "Hebrew", "Yiddish"],
+    text: "Between English, Hebrew, and Yiddish, reviewed for accuracy and style.",
+  },
+  {
+    title: "Graphics",
+    icon: Palette,
+    tags: ["Covers", "Dedications", "Flyers"],
+    text: "Custom covers, dedication pages, flyers and more, designed around your vision.",
+  },
+  {
+    title: "Covers",
+    icon: BookMarked,
+    tags: ["Hard & Soft", "Foil", "Leather"],
+    text: "Hard or soft, foil-stamped or printed, antique leather and more to make your sefer stand out.",
+  },
+  {
+    title: "Printing & Binding",
+    icon: Printer,
+    tags: ["Digital", "Offset", "Sewn"],
+    text: "Digital or offset, black and white or color, with sewn, spiral, or saddle-stitched binding.",
+  },
+  {
+    title: "Shipping & Distribution",
+    icon: Truck,
+    tags: ["Worldwide", "Distributors"],
+    text: "Your sefer delivered across the globe through leading book distributors.",
+  },
+  {
+    title: "Fiction, Non-Fiction & Family Memorial Books",
+    icon: Sparkles,
+    tags: ["Fiction", "Non-Fiction", "Memorial"],
+    text: "Research, editing, layout, and design for your family's story, at whatever stage you need.",
+  },
+];
 
-const themes = {
-  maroon: { from: "#4A1521", to: "#2B0B12" },
-  green: { from: "#1C3326", to: "#10201A" },
-  navy: { from: "#1B2740", to: "#0F1729" },
-};
+const QUOTE_HREF = "/contact";
 
-const services = [
-  { title: "Full Service", description: "Meticulous transcription, typesetting, and editing across every genre, fully customized layouts.", detail: "One dedicated team guiding your sefer from first draft to final print.", tags: ["Transcription", "Typesetting", "Editing"], theme: "maroon", icon: Layers3 },
-  { title: "Content", description: "In-house talmidei chachamim advising on content across derush, halacha, machshava, chassidus, and Kabbalah.", detail: "Guidance on structure, sources, and clarity from experienced talmidei chachamim.", tags: ["Derush", "Halacha", "Machshava"], theme: "green", icon: BookOpen },
-  { title: "Editing, Hebrew & English", description: "Skilled editors polish manuscripts while preserving personal style and authenticity.", detail: "Language, flow, and footnotes refined while your voice stays your own.", tags: ["Polish", "Proofread", "Style"], theme: "navy", icon: PenLine },
-  { title: "Typing, Hebrew & English", description: "Dedicated typists convert handwritten notes into distribution-ready manuscripts.", detail: "Clean, accurate manuscripts from even the most difficult handwriting.", tags: ["Hebrew", "English", "Handwritten"], theme: "green", icon: Keyboard },
-  { title: "Transcriptions", description: "Audio (family interviews, shiurim, lectures) transcribed in English, Hebrew, or Yiddish.", detail: "Every word captured faithfully, from recording to readable page.", tags: ["Interviews", "Shiurim", "Lectures"], theme: "maroon", icon: Mic },
-  { title: "Translations", description: "Between English, Hebrew, and Yiddish, reviewed for accuracy and style.", detail: "Faithful to the source, natural in the language it is translated into.", tags: ["English", "Hebrew", "Yiddish"], theme: "navy", icon: Languages },
-  { title: "Graphics", description: "Cover art, dedication pages, and flyers, designed to give your sefer a distinct visual identity.", detail: "Designs that reflect the character and spirit of your sefer.", tags: ["Covers", "Dedications", "Flyers"], theme: "navy", icon: Circle },
-  { title: "Covers", description: "Hard/soft, foil-stamped, antique leather, and more.", detail: "Choose the finish that suits your sefer, from classic to luxurious.", tags: ["Hard", "Soft", "Foil-Stamped"], theme: "green", icon: BookMarked },
-  { title: "Printing & Binding", description: "Digital or offset, sewn/spiral/saddle-stitched binding options.", detail: "Print runs of any size, bound to last for generations.", tags: ["Digital", "Offset", "Sewn"], theme: "maroon", icon: Printer },
-  { title: "Shipping & Distribution", description: "Strong distributor relationships for international reach.", detail: "Your sefer, delivered to shops and homes around the world.", tags: ["Distributors", "International", "Delivery"], theme: "green", icon: Globe2 },
-  { title: "Fiction, Non-Fiction & Family Memorial Books", description: "Full-service research through final design.", detail: "A complete journey from research and writing to design and print.", tags: ["Fiction", "Non-Fiction", "Memorial"], theme: "navy", icon: Users, wide: true },
-] as const;
+// Each card takes the next colour in turn: top edge and icon at rest, the whole card on hover.
+const ACCENTS = ["#4A1521", "#1C3326", "#1B2740", "#4A2A1B"];
+
+/*
+  How the hover works
+  - At rest a card shows its icon, title and keywords.
+  - On hover (or keyboard focus) the card takes its colour and the description appears where the
+    keywords were. Nothing moves and nothing animates: there is no transition on any of it.
+  - The [@media(hover:hover)] classes apply only on devices with a real pointer. Phones and tablets
+    have no hover, so there the description is simply always shown.
+*/
 
 export default function Services() {
   return (
-    <section id="services" className="bg-[#FBF7EF] py-4 lg:py-[40px]">
-      <div className="mx-auto w-full max-w-[1200px] px-6">
-        <div className="mb-[60px] text-center">
-          <div className="mb-4 inline-flex items-center justify-center gap-[10px] font-body text-[0.78rem] font-semibold uppercase tracking-[0.24em] text-[#9C7A1E]">
+    <section id="services" className="bg-[#FAF6EE] px-6 py-16 lg:py-24">
+      <div className="mx-auto max-w-[1200px]">
+        <div className="text-center">
+          <span className="mb-4 inline-flex items-center gap-2.5 font-body text-xs font-semibold uppercase tracking-[0.24em] text-[#9C7A1E]">
             <span className="h-px w-5 bg-current opacity-60" />
-            Master Craftsmen
+            What We Offer
             <span className="h-px w-5 bg-current opacity-60" />
-          </div>
-
-          <h2 className="mb-6 font-display text-[2.85rem] font-normal leading-tight text-[#4A1521]">
-            Our <em className="italic text-[#C08A1E]">Services</em>
-          </h2>
-
-          <p className="mx-auto max-w-[560px] font-display text-[1.05rem] italic leading-[1.6] text-[#6E5D57]">
-            A complete range of publishing services, tailored to your sefer.
-            <br />
-            From the first idea to the final printed volume, we are with you at every step.
-          </p>
+          </span>
+          <h2 className="font-display text-[2.55rem] font-medium leading-[1.2] text-[#4A1521]">Every service, in-house.</h2>
         </div>
 
-        <div className="grid grid-cols-1 gap-[26px] sm:grid-cols-2 lg:grid-cols-3">
-          {services.map((service, i) => {
-            const Icon = service.icon;
-            const theme = themes[service.theme];
-            return (
-              <div
-                key={service.title}
-                style={{ borderTopColor: theme.from }}
-                className={`group relative flex min-w-0 flex-col overflow-hidden border border-[#4A1521]/[0.13] border-t-2 bg-[#FAF4E6] px-7 pb-[30px] pt-[34px] transition-all duration-[350ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-[5px] hover:shadow-[0_20px_34px_-18px_rgba(74,21,33,0.28)] ${"wide" in service ? "lg:col-span-2" : ""}`}
-              >
-                <div
-                  aria-hidden="true"
-                  style={{
-                    backgroundImage: `repeating-linear-gradient(180deg, rgba(255,255,255,0.035) 0px 2px, transparent 2px 28px), linear-gradient(160deg, ${theme.from} 0%, ${theme.to} 100%)`,
-                  }}
-                  className="pointer-events-none absolute inset-0 [clip-path:inset(100%_0_0_0)] transition-[clip-path] duration-500 ease-[cubic-bezier(0.65,0,0.35,1)] group-hover:[clip-path:inset(0_0_0_0)]"
-                >
-                  
-                </div>
+        <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:mt-12 lg:grid-cols-3">
+          {SERVICES.map((service, i) => (
+            <article
+              key={service.title}
+              tabIndex={0}
+              style={{ "--accent": ACCENTS[i % ACCENTS.length] } as CSSProperties}
+              className="group relative flex flex-col border border-t-[3px] border-[#4A1521]/[0.12] border-t-[color:var(--accent)] bg-[#FAF2E5] px-7 pb-6 pt-8 outline-none !transition-none !animate-none focus-visible:bg-[color:var(--accent)] [&_*]:!transition-none [&_*]:!animate-none [@media(hover:hover)]:hover:bg-[color:var(--accent)]"
+            >
+              {/* Corner ticks */}
+              <span aria-hidden="true" className="absolute left-2.5 top-2.5 h-2.5 w-2.5 border-l border-t border-[#C59B27]" />
+              <span aria-hidden="true" className="absolute bottom-2.5 right-2.5 h-2.5 w-2.5 border-b border-r border-[#C59B27]" />
 
-                <span className="pointer-events-none absolute left-[7px] top-[7px] z-10 h-[9px] w-[9px] border-l border-t border-[#4A1521]/40 transition-colors duration-300 group-hover:border-[#E0BA53]/70" />
-                <span className="pointer-events-none absolute bottom-[7px] right-[7px] z-10 h-[9px] w-[9px] border-b border-r border-[#4A1521]/40 transition-colors duration-300 group-hover:border-[#E0BA53]/70" />
-                <span className="absolute right-7 top-[34px] z-10 font-display text-[0.85rem] italic text-[#4A1521]/30 transition-colors duration-300 group-hover:text-[#E0BA53]/60 group-hover:delay-200">{String(i + 1).padStart(2, "0")}</span>
+              {/* Small "+" that tells the visitor there is more to see */}
+              <Plus
+                aria-hidden="true"
+                size={16}
+                strokeWidth={1.6}
+                className="absolute right-6 top-8 hidden text-[#9C7A1E] group-focus-visible:opacity-0 [@media(hover:hover)]:block [@media(hover:hover)]:group-hover:opacity-0"
+              />
 
-                <div className="relative z-10 flex flex-1 flex-col">
-                  <span className="mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-[#F3E6C8] transition-opacity duration-300 group-hover:opacity-0">
-                    <Icon size={28} strokeWidth={1.3} className="text-[#8B5E2F]" />
-                  </span>
+              <service.icon
+                size={32}
+                strokeWidth={1.4}
+                className="text-[color:var(--accent)] group-focus-visible:text-[#E0BA53] [@media(hover:hover)]:group-hover:text-[#E0BA53]"
+              />
 
-                  <h3 className="mb-[11px] font-display text-[1.34rem] font-semibold leading-tight text-[#4A1521] transition-colors duration-300 group-hover:text-[#E0BA53] group-hover:delay-200">{service.title}</h3>
+              <h3 className="mt-5 font-display text-[1.45rem] font-medium leading-snug text-[#3A101A] group-focus-visible:text-[#F7E9C2] [@media(hover:hover)]:group-hover:text-[#F7E9C2]">
+                {service.title}
+              </h3>
 
-                  <div className="mt-auto grid">
-                    <div className="col-start-1 row-start-1 flex flex-wrap items-center gap-x-3 gap-y-1 self-end border-t border-[#4A1521]/10 pt-4 font-body text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-[#9C7A1E] transition-opacity duration-200 group-focus-within:opacity-0 group-hover:opacity-0 [@media(hover:none)]:hidden">
-                      {service.tags.map((tag, t) => (
-                        <span key={tag} className="flex items-center gap-3">
-                          {t > 0 && <span className="h-[5px] w-[5px] rotate-45 bg-[#C59B27]" />}
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
+              {/* Keywords and description share the same space, so the card never changes size */}
+              <div className="mt-3 grid flex-1">
+                <ul className="col-start-1 row-start-1 hidden flex-wrap items-center gap-x-3 gap-y-1.5 self-end border-t border-[#4A1521]/[0.12] pt-4 font-body text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-[#9C7A1E] group-focus-visible:opacity-0 [@media(hover:hover)]:flex [@media(hover:hover)]:group-hover:opacity-0">
+                  {service.tags.map((tag, t) => (
+                    <li key={tag} className="flex items-center gap-3">
+                      {t > 0 && <span aria-hidden="true" className="h-[5px] w-[5px] rotate-45 bg-[#C59B27]" />}
+                      {tag}
+                    </li>
+                  ))}
+                </ul>
 
-                    <div className="col-start-1 row-start-1 translate-y-2 opacity-0 transition-all duration-[350ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-focus-within:translate-y-0 group-focus-within:opacity-100 group-hover:translate-y-0 group-hover:opacity-100 [@media(hover:none)]:translate-y-0 [@media(hover:none)]:opacity-100">
-                      <p className="mb-4 font-display text-[0.95rem] italic leading-[1.5] text-[#9C7A1E] transition-colors duration-300 group-hover:text-[#E0BA53] group-hover:delay-200">{service.detail}</p>
-
-                      <a href="#" className="flex items-center gap-2 font-body text-[0.72rem] font-semibold uppercase tracking-[0.12em] text-[#4A1521] transition-colors duration-300 hover:!text-[#E0BA53] group-hover:text-[#FBF7EF] group-hover:delay-200">
-                        <span className="h-px w-8 bg-[#C59B27]" />
-                        Learn More
-                        <ArrowRight size={13} strokeWidth={2} />
-                      </a>
-                    </div>
-                  </div>
-                </div>
+                <p className="col-start-1 row-start-1 font-body text-[1rem] leading-[1.65] text-[#5C4B46] group-focus-visible:text-[#F1E6DA] group-focus-visible:opacity-100 [@media(hover:hover)]:text-[#F1E6DA] [@media(hover:hover)]:opacity-0 [@media(hover:hover)]:group-hover:opacity-100">
+                  {service.text}
+                </p>
               </div>
-            );
-          })}
-        </div>
+            </article>
+          ))}
 
-        <div className="mt-14 flex items-center justify-center gap-4">
-          <span className="h-px w-10 bg-[#C59B27]/50" />
-          <p className="font-display text-[0.95rem] italic text-[#9C7A1E]">&ldquo;Great seforim build greater generations.&rdquo;</p>
-          <span className="h-px w-10 bg-[#C59B27]/50" />
+          {/* Twelfth tile: call to action */}
+          <div className="flex flex-col justify-center border border-[#C59B27]/50 bg-[#3A101A] px-7 py-7">
+            <div className="font-display text-[1.45rem] font-medium leading-snug text-[#F7E9C2]">Not sure where to start?</div>
+            <p className="mt-2 font-body text-[1rem] leading-[1.65] text-[#EDE1D3]">Tell us about your sefer or manuscript.</p>
+            <Link
+              href={QUOTE_HREF}
+              className="mt-4 inline-flex w-fit items-center gap-2 rounded-sm bg-[#C59B27] px-6 py-3 font-body text-[0.8rem] font-semibold uppercase tracking-[0.12em] text-[#2B0B12] hover:bg-[#D6AE3C] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F7E9C2]"
+            >
+              Request a quote
+              <ArrowRight size={15} strokeWidth={2} />
+            </Link>
+          </div>
         </div>
       </div>
     </section>
