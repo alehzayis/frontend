@@ -253,11 +253,15 @@ export default function ProductDetailPage() {
                   key={img.url + i}
                   type="button"
                   onClick={() => setActiveImage(i)}
-                  className={`h-[64px] w-[64px] shrink-0 overflow-hidden rounded-[8px] border ${
+                  className={`h-[64px] w-[64px] shrink-0 overflow-hidden rounded-[8px] border bg-[#F8F3EA] ${
                     i === activeImage ? "border-[#4A1521]" : "border-[#4A1521]/15"
                   }`}
                 >
-                  <img src={img.url} alt={img.alt || product.title} className="h-full w-full object-cover" />
+                  <img
+                    src={img.url}
+                    alt={img.alt || product.title}
+                    className="h-full w-full object-contain p-[5px] mix-blend-multiply"
+                  />
                 </button>
               ))}
             </div>
@@ -266,13 +270,13 @@ export default function ProductDetailPage() {
               <button
                 type="button"
                 onClick={() => images[activeImage] && setLightboxOpen(true)}
-                className="aspect-square w-full overflow-hidden rounded-[14px] border border-[#4A1521]/10 bg-[#F8F3EA]"
+                className="aspect-[4/5] w-full overflow-hidden rounded-[14px] border border-[#4A1521]/10 bg-[#F8F3EA]"
               >
                 {images[activeImage] ? (
                   <img
                     src={images[activeImage].url}
                     alt={images[activeImage].alt || product.title}
-                    className="h-full w-full object-cover"
+                    className="h-full w-full object-contain p-[26px] mix-blend-multiply"
                   />
                 ) : (
                   <div className="flex h-full w-full items-center justify-center">
@@ -498,7 +502,7 @@ export default function ProductDetailPage() {
           <img
             src={images[activeImage].url}
             alt={images[activeImage].alt || product.title}
-            className="max-h-full max-w-full rounded-[8px] object-contain"
+            className="max-h-full max-w-full rounded-[8px] bg-[#F8F3EA] object-contain"
           />
         </div>
       )}

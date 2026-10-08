@@ -100,10 +100,11 @@ const toggleWishlist = async (e: React.MouseEvent) => {
       href={`/shop/${product.slug}`}
       className="group block overflow-hidden rounded-[14px] border border-[#4A1521]/10 bg-white shadow-[0_4px_14px_rgba(50,12,20,0.06)] transition-shadow duration-200 hover:shadow-[0_14px_30px_rgba(50,12,20,0.12)]"
     >
-      <div className="relative aspect-square bg-[#F8F3EA]">
+      {/* Book-shaped panel. The whole image is always shown (never cropped); white photo backgrounds blend into the panel. */}
+      <div className="relative aspect-[4/5] bg-[#F8F3EA]">
         {badge && (
           <span
-            className={`absolute left-[10px] top-[10px] rounded-full px-[10px] py-[4px] font-body text-[0.68rem] font-semibold ${
+            className={`absolute left-[10px] top-[10px] z-10 rounded-full px-[10px] py-[4px] font-body text-[0.68rem] font-semibold ${
               badge.tone === "gold" ? "bg-[#C59B27] text-[#3A101A]" : "bg-[#4A1521] text-[#FFF9EF]"
             }`}
           >
@@ -116,7 +117,7 @@ const toggleWishlist = async (e: React.MouseEvent) => {
           onClick={toggleWishlist}
           aria-label={isWishlisted ? "Remove from wishlist" : "Save for later"}
           aria-pressed={isWishlisted}
-          className="absolute right-[10px] top-[10px] flex h-[32px] w-[32px] items-center justify-center rounded-full bg-white shadow-[0_2px_8px_rgba(0,0,0,0.12)]"
+          className="absolute right-[10px] top-[10px] z-10 flex h-[32px] w-[32px] items-center justify-center rounded-full bg-white shadow-[0_2px_8px_rgba(0,0,0,0.12)]"
         >
           <Heart
             size={15}
@@ -126,7 +127,12 @@ const toggleWishlist = async (e: React.MouseEvent) => {
         </button>
 
         {cover ? (
-          <img src={cover} alt={product.title} className="h-full w-full object-cover" />
+          <img
+            src={cover}
+            alt={product.title}
+            loading="lazy"
+            className="h-full w-full object-contain p-[18px] mix-blend-multiply"
+          />
         ) : (
           <div className="flex h-full w-full items-center justify-center">
             <BookOpen size={32} strokeWidth={1.4} className="text-[#8B7B7E]" />
