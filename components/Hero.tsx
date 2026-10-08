@@ -118,10 +118,10 @@ export default function Hero() {
           <div className="max-w-[560px]">
             <p className="font-display text-[1.45rem] leading-[1.35] text-[#55474A] sm:text-[1.6rem]">
               <span className="italic">
-                To every mechaber, a sefer is like an{" "}
-                <span className="font-medium text-[#4A1521]">
+                To every mechaber, a sefer is like an only child.
+                {/* <span className="font-medium text-[#4A1521]">
                   only child.
-                </span>
+                </span> */}
               </span>
 
               <br />
