@@ -1,4 +1,4 @@
-
+// import { useEffect, useRef, useState } from "react";
 // import type { CSSProperties } from "react";
 // import Link from "next/link";
 // import {
@@ -88,23 +88,74 @@
 
 // const QUOTE_HREF = "/contact";
 
-// // Each card takes the next colour in turn: top edge and icon at rest, the whole card on hover.
+// // Each card takes the next colour in turn: top edge and icon at rest, the whole card when active.
 // const ACCENTS = ["#4A1521", "#1C3326", "#1B2740", "#4A2A1B"];
 
-// // Faint ruled lines drawn over the card's colour on hover (1px line every 17.5px).
+// // Faint ruled lines drawn over the card's colour when it is active (1px line every 17.5px).
 // const RULED_LINES =
 //   "repeating-linear-gradient(to bottom, transparent 0, transparent 16.5px, rgba(255,255,255,0.036) 16.5px, rgba(255,255,255,0.036) 17.5px)";
 
+// // Set to false to switch the scroll highlight off; cards then only react to the mouse and keyboard.
+// const HIGHLIGHT_ON_SCROLL = true;
+
+// // The card crossing this point of the screen is the one lit while scrolling (0.5 = the middle).
+// const SCROLL_LINE = 0.75;
+
 // /*
-//   How the hover works
-//   - At rest a card shows its icon, title and keywords.
-//   - On hover (or keyboard focus) the card takes its colour and the description appears where the
-//     keywords were. Nothing moves and nothing animates: there is no transition on any of it.
-//   - The [@media(hover:hover)] classes apply only on devices with a real pointer. Phones and tablets
-//     have no hover, so there the description is simply always shown.
+//   How a card becomes "active"
+//   - At rest a card shows its icon, title and keywords. The active card takes its colour and shows
+//     its description where the keywords were. Nothing moves and nothing animates.
+//   - Scrolling: as the grid passes the middle of the screen, the cards light up one after another,
+//     left to right and row by row, so every visitor sees each description without having to hover.
+//   - Mouse and keyboard still work: moving the mouse over a card, or tabbing to it, makes that card
+//     the active one. Only one card is ever active at a time.
+//   - Phones and tablets have no hover, so the descriptions are always shown there; the scroll
+//     highlight just adds the colour.
 // */
 
 // export default function Services() {
+//   const gridRef = useRef<HTMLDivElement>(null);
+//   const [pointed, setPointed] = useState<number | null>(null); // card under the mouse / keyboard focus
+//   const [scrolled, setScrolled] = useState<number | null>(null); // card picked by the scroll position
+//   const active = pointed ?? scrolled;
+
+//   useEffect(() => {
+//     if (!HIGHLIGHT_ON_SCROLL) return;
+//     // Visitors who ask their device for less motion don't get the automatic highlight.
+//     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+//     let frame = 0;
+
+//     const update = () => {
+//       frame = 0;
+//       const grid = gridRef.current;
+//       if (!grid) return;
+
+//       const rect = grid.getBoundingClientRect();
+//       const line = window.innerHeight * SCROLL_LINE;
+//       const tiles = grid.children.length; // the service cards plus the call-to-action tile
+//       const progress = (line - rect.top) / rect.height;
+
+//       // All tiles are the same size, so the position along the grid maps straight onto a tile.
+//       const index = progress >= 0 && progress < 1 ? Math.floor(progress * tiles) : -1;
+//       setScrolled(index >= 0 && index < SERVICES.length ? index : null);
+//     };
+
+//     const onScroll = () => {
+//       setPointed(null); // after a scroll the mouse may be resting on a different card
+//       if (!frame) frame = requestAnimationFrame(update);
+//     };
+
+//     update();
+//     window.addEventListener("scroll", onScroll, { passive: true });
+//     window.addEventListener("resize", onScroll);
+//     return () => {
+//       window.removeEventListener("scroll", onScroll);
+//       window.removeEventListener("resize", onScroll);
+//       if (frame) cancelAnimationFrame(frame);
+//     };
+//   }, []);
+
 //   return (
 //     <section id="services" className="bg-[#FAF6EE] px-6 py-16 lg:py-24">
 //       <div className="mx-auto max-w-[1200px]">
@@ -117,13 +168,21 @@
 //           <h2 className="font-display text-[2.55rem] font-medium leading-[1.2] text-[#4A1521]">Every service, in-house.</h2>
 //         </div>
 
-//         <div className="mt-10 grid auto-rows-fr grid-cols-1 gap-5 sm:grid-cols-2 lg:mt-12 lg:grid-cols-3">
+//         <div
+//           ref={gridRef}
+//           onMouseLeave={() => setPointed(null)}
+//           className="mt-10 grid auto-rows-fr grid-cols-1 gap-5 sm:grid-cols-2 lg:mt-12 lg:grid-cols-3"
+//         >
 //           {SERVICES.map((service, i) => (
 //             <article
 //               key={service.title}
 //               tabIndex={0}
+//               data-active={active === i}
+//               onMouseMove={() => setPointed(i)}
+//               onFocus={() => setPointed(i)}
+//               onBlur={() => setPointed(null)}
 //               style={{ "--accent": ACCENTS[i % ACCENTS.length], "--ruled": RULED_LINES } as CSSProperties}
-//               className="group relative flex flex-col border border-t-[3px] border-[#4A1521]/[0.12] border-t-[color:var(--accent)] bg-[#FAF2E5] px-7 pb-6 pt-8 outline-none !transition-none !animate-none focus-visible:bg-[color:var(--accent)] focus-visible:bg-[image:var(--ruled)] [&_*]:!transition-none [&_*]:!animate-none [@media(hover:hover)]:hover:bg-[color:var(--accent)] [@media(hover:hover)]:hover:bg-[image:var(--ruled)]"
+//               className="group relative flex flex-col border border-t-[3px] border-[#4A1521]/[0.12] border-t-[color:var(--accent)] bg-[#FAF2E5] px-7 pb-6 pt-8 outline-none !transition-none !animate-none data-[active=true]:bg-[color:var(--accent)] data-[active=true]:bg-[image:var(--ruled)] [&_*]:!transition-none [&_*]:!animate-none"
 //             >
 //               {/* Corner ticks */}
 //               <span aria-hidden="true" className="absolute left-2.5 top-2.5 h-2.5 w-2.5 border-l border-t border-[#C59B27]" />
@@ -134,22 +193,22 @@
 //                 aria-hidden="true"
 //                 size={16}
 //                 strokeWidth={1.6}
-//                 className="absolute right-6 top-8 hidden text-[#9C7A1E] group-focus-visible:opacity-0 [@media(hover:hover)]:block [@media(hover:hover)]:group-hover:opacity-0"
+//                 className="absolute right-6 top-8 hidden text-[#9C7A1E] group-data-[active=true]:opacity-0 [@media(hover:hover)]:block"
 //               />
 
 //               <service.icon
 //                 size={32}
 //                 strokeWidth={1.4}
-//                 className="text-[color:var(--accent)] group-focus-visible:text-[#E0BA53] [@media(hover:hover)]:group-hover:text-[#E0BA53]"
+//                 className="text-[color:var(--accent)] group-data-[active=true]:text-[#E0BA53]"
 //               />
 
-//               <h3 className="mt-5 font-display text-[1.45rem] font-medium leading-snug text-[#3A101A] group-focus-visible:text-[#F7E9C2] [@media(hover:hover)]:group-hover:text-[#F7E9C2]">
+//               <h3 className="mt-5 font-display text-[1.45rem] font-medium leading-snug text-[#3A101A] group-data-[active=true]:text-[#F7E9C2]">
 //                 {service.title}
 //               </h3>
 
 //               {/* Keywords and description share the same space, so the card never changes size */}
 //               <div className="mt-3 grid flex-1">
-//                 <ul className="col-start-1 row-start-1 hidden flex-wrap items-center gap-x-3 gap-y-1.5 self-end border-t border-[#4A1521]/[0.12] pt-4 font-body text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-[#9C7A1E] group-focus-visible:opacity-0 [@media(hover:hover)]:flex [@media(hover:hover)]:group-hover:opacity-0">
+//                 <ul className="col-start-1 row-start-1 hidden flex-wrap items-center gap-x-3 gap-y-1.5 self-end border-t border-[#4A1521]/[0.12] pt-4 font-body text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-[#9C7A1E] group-data-[active=true]:opacity-0 [@media(hover:hover)]:flex">
 //                   {service.tags.map((tag, t) => (
 //                     <li key={tag} className="flex items-center gap-3">
 //                       {t > 0 && <span aria-hidden="true" className="h-[5px] w-[5px] rotate-45 bg-[#C59B27]" />}
@@ -158,7 +217,7 @@
 //                   ))}
 //                 </ul>
 
-//                 <p className="col-start-1 row-start-1 font-body text-[1rem] leading-[1.65] text-[#5C4B46] group-focus-visible:text-[#F1E6DA] group-focus-visible:opacity-100 [@media(hover:hover)]:text-[#F1E6DA] [@media(hover:hover)]:opacity-0 [@media(hover:hover)]:group-hover:opacity-100">
+//                 <p className="col-start-1 row-start-1 font-body text-[1rem] leading-[1.65] text-[#5C4B46] group-data-[active=true]:text-[#F1E6DA] group-data-[active=true]:opacity-100 [@media(hover:hover)]:opacity-0">
 //                   {service.text}
 //                 </p>
 //               </div>
@@ -555,7 +614,13 @@ const RULED_LINES =
 const HIGHLIGHT_ON_SCROLL = true;
 
 // The card crossing this point of the screen is the one lit while scrolling (0.5 = the middle).
-const SCROLL_LINE = 0.75;
+const SCROLL_LINE = 0.5;
+
+// SPEED. The shortest time, in milliseconds, each card stays lit while scrolling.
+// Bigger = slower (1000 = one second per card). 0 = follow the scroll exactly, however fast.
+// When a visitor scrolls faster than this, the highlight follows behind and catches up one card
+// at a time, so no card is skipped.
+const MIN_TIME_PER_CARD = 600;
 
 /*
   How a card becomes "active"
@@ -563,6 +628,7 @@ const SCROLL_LINE = 0.75;
     its description where the keywords were. Nothing moves and nothing animates.
   - Scrolling: as the grid passes the middle of the screen, the cards light up one after another,
     left to right and row by row, so every visitor sees each description without having to hover.
+    Each card stays lit for at least MIN_TIME_PER_CARD, so a fast scroll cannot rush through them.
   - Mouse and keyboard still work: moving the mouse over a card, or tabbing to it, makes that card
     the active one. Only one card is ever active at a time.
   - Phones and tablets have no hover, so the descriptions are always shown there; the scroll
@@ -580,7 +646,35 @@ export default function Services() {
     // Visitors who ask their device for less motion don't get the automatic highlight.
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
+    const count = SERVICES.length;
+    // Positions along the tour: -1 = before the first card, 0..count-1 = a card, count = after the last.
+    let position: number | null = null; // where the highlight is now
+    let target = -1; // where the scroll position says it should be
+    let lastStep = 0;
     let frame = 0;
+    let timer: ReturnType<typeof setTimeout> | undefined;
+
+    const show = (next: number) => {
+      position = next;
+      lastStep = performance.now();
+      setScrolled(next >= 0 && next < count ? next : null);
+    };
+
+    // Move one card towards the target, but never sooner than MIN_TIME_PER_CARD after the last move.
+    const advance = () => {
+      timer = undefined;
+      if (position === null || position === target) return;
+
+      const wait = MIN_TIME_PER_CARD - (performance.now() - lastStep);
+      const onACard = position >= 0 && position < count;
+      if (onACard && wait > 0) {
+        timer = setTimeout(advance, wait);
+        return;
+      }
+
+      show(position + Math.sign(target - position));
+      if (position !== target) timer = setTimeout(advance, MIN_TIME_PER_CARD);
+    };
 
     const update = () => {
       frame = 0;
@@ -593,8 +687,21 @@ export default function Services() {
       const progress = (line - rect.top) / rect.height;
 
       // All tiles are the same size, so the position along the grid maps straight onto a tile.
-      const index = progress >= 0 && progress < 1 ? Math.floor(progress * tiles) : -1;
-      setScrolled(index >= 0 && index < SERVICES.length ? index : null);
+      if (progress < 0) target = -1;
+      else if (progress >= 1) target = count;
+      else target = Math.min(Math.floor(progress * tiles), count);
+
+      const gridOnScreen = rect.bottom > 0 && rect.top < window.innerHeight;
+
+      // Jump straight there on first load, when the grid is off screen, or when no minimum time is set.
+      if (position === null || !gridOnScreen || MIN_TIME_PER_CARD <= 0) {
+        if (timer) clearTimeout(timer);
+        timer = undefined;
+        show(target);
+        return;
+      }
+
+      if (!timer) advance();
     };
 
     const onScroll = () => {
@@ -609,6 +716,7 @@ export default function Services() {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
       if (frame) cancelAnimationFrame(frame);
+      if (timer) clearTimeout(timer);
     };
   }, []);
 
