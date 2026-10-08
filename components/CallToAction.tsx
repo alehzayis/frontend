@@ -39,13 +39,13 @@ export default function QuoteBanner() {
             Tell us about your sefer or manuscript and we&apos;ll take it from there.
           </p>
 
-          <Link
-            href="#quote"
+          <a
+            href="https://alehzayissubmissin.netlify.app/submit"
             className="group mt-7 flex w-full max-w-[20rem] items-center justify-center gap-3 rounded-md border border-[#C59B27]/60 bg-[#4A1521] px-7 py-[17px] font-body text-[0.82rem] font-bold uppercase tracking-[0.22em] text-[#FFFDF8] shadow-[0_16px_30px_-16px_rgba(43,11,18,0.75)] transition-colors duration-200 hover:bg-[#3A101A] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C59B27]"
           >
             Get a Quote
             <ArrowRight size={16} strokeWidth={2} className="transition-transform duration-200 group-hover:translate-x-1" />
-          </Link>
+          </a>
 
           {/* Change #contact to wherever your contact page or section lives */}
           <p className="mt-6 font-body text-[0.98rem] text-[#6E5D57]">
