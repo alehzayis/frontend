@@ -626,41 +626,40 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 
-// The stages of making a sefer, in order. Shown as a "contents" row under the photo.
-const stages = [
+const slides = [
   {
     name: "Typing",
-    caption: "Handwritten pages, typed clean and ready to edit.",
+    text: "Handwritten pages, typed clean and ready to edit.",
     image: "/assets/Typing.png",
   },
   {
     name: "Manuscripts",
-    caption: "Old kisvei yad, deciphered and prepared for print.",
+    text: "Old kisvei yad, deciphered and prepared for print.",
     image: "/assets/manuscripts.png",
   },
   {
     name: "Transcribing",
-    caption: "Shiurim and family recordings, written out in English, Hebrew or Yiddish.",
+    text: "Shiurim and family recordings, written out in English, Hebrew or Yiddish.",
     image: "/assets/transcribing.png",
   },
   {
     name: "Editing",
-    caption: "The mechaber's language refined line by line, with his voice kept intact.",
+    text: "The mechaber's language refined line by line, with his voice kept intact.",
     image: "/assets/editing-img.png",
   },
   {
     name: "Consulting",
-    caption: "Talmidei chachamim advising on content, layout and print.",
+    text: "Talmidei chachamim advising on content, layout and print.",
     image: "/assets/consultations-new.png",
   },
   {
     name: "Printing",
-    caption: "Every run checked in person before it leaves the press.",
+    text: "Every run checked in person before it leaves the press.",
     image: "/assets/printing.png",
   },
   {
     name: "Distribution",
-    caption: "To stores, batei medrash and lomdim around the world.",
+    text: "To stores, batei medrash and lomdim around the world.",
     image: "/assets/distribution.png",
   },
 ];
@@ -668,28 +667,23 @@ const stages = [
 export default function Hero() {
   const [active, setActive] = useState(0);
 
-  // Auto-advance every 4 seconds. Depends on `active`, so clicking a stage
-  // restarts the countdown instead of jumping away immediately.
   useEffect(() => {
-    const timer = setTimeout(
-      () => setActive((i) => (i + 1) % stages.length),
-      4000
-    );
+    const timer = setTimeout(() => {
+      setActive((i) => (i + 1) % slides.length);
+    }, 4000);
+
     return () => clearTimeout(timer);
   }, [active]);
 
-  const stage = stages[active];
+  const current = slides[active];
 
   return (
     <section
       id="home"
-      className="relative overflow-x-hidden bg-[#FBF3E6] pt-8 lg:pt-14 pb-8 lg:pb-14"
+      className="relative overflow-x-hidden bg-[#FBF3E6] pt-8 pb-8 lg:pt-14 lg:pb-14"
     >
       <div className="mx-auto flex w-full max-w-[1440px] flex-col lg:flex-row lg:items-center">
-
-        {/* LEFT SIDE — restored to the original */}
         <div className="relative z-10 flex w-full flex-col justify-center px-6 py-10 sm:px-10 sm:py-14 lg:w-[46%] lg:px-14 lg:py-12 xl:px-16">
-
           <div className="mb-5 flex items-center gap-3">
             <span
               dir="rtl"
@@ -699,33 +693,26 @@ export default function Hero() {
             >
               עריכת ספרים מרישא עד גמירא
             </span>
-
             <span className="h-10 w-[2px] bg-[#C59B27]" />
           </div>
 
           <h1 className="max-w-[600px] font-display text-[2.9rem] font-normal leading-[1.05] tracking-[-0.02em] text-[#4A1521] sm:text-[3.4rem] lg:text-[3.8rem]">
             Torah Publishing,
             <br />
-            <em className="font-medium italic text-[#C08A1E]">
-              Crafted.
-            </em>
+            <em className="font-medium italic text-[#C08A1E]">Crafted.</em>
           </h1>
 
           <div className="my-6 h-[2px] w-[64px] bg-[#C59B27]" />
 
-          <div className="max-w-[560px]">
-            <p className="font-display text-[1.45rem] leading-[1.35] text-[#55474A] sm:text-[1.6rem]">
-              <span className="italic">
-                To every mechaber, a sefer is like an only child.
-              </span>
-
-              <br />
-
-              <span className="mt-1 inline-block font-medium italic text-[#4A1521]">
-                We treat it that way.
-              </span>
-            </p>
-          </div>
+          <p className="max-w-[560px] font-display text-[1.45rem] leading-[1.35] text-[#55474A] sm:text-[1.6rem]">
+            <span className="italic">
+              To every mechaber, a sefer is like an only child.
+            </span>
+            <br />
+            <span className="mt-1 inline-block font-medium italic text-[#4A1521]">
+              We treat it that way.
+            </span>
+          </p>
 
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <Link
@@ -745,59 +732,51 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* RIGHT SIDE — new photo + stages (shows on mobile too) */}
         <div className="relative flex w-full items-center justify-center px-6 sm:px-10 lg:w-[54%] lg:px-0 lg:pr-10 xl:pr-16">
           <figure className="m-0 w-full lg:w-[80%]">
             <div className="relative aspect-16/10 w-full overflow-hidden rounded-[3px] bg-[#EFE5D2] shadow-[0_20px_50px_-28px_rgba(43,11,18,0.5)]">
-              {/* All photos stacked; the active one fades in for a soft crossfade */}
-              {stages.map((s, i) => (
+              {slides.map((slide, i) => (
                 <Image
-                  key={s.image}
-                  src={s.image}
-                  alt={i === active ? `${s.name} at Machon Aleh Zayis` : ""}
+                  key={slide.image}
+                  src={slide.image}
+                  alt={i === active ? slide.name : ""}
                   aria-hidden={i !== active}
                   fill
                   priority={i === 0}
                   sizes="(min-width: 1024px) 45vw, 100vw"
-                  className={
-                    "object-cover transition-opacity duration-700 ease-in-out " +
-                    (i === active ? "opacity-100" : "opacity-0")
-                  }
+                  className={`object-cover transition-opacity duration-700 ease-in-out ${
+                    i === active ? "opacity-100" : "opacity-0"
+                  }`}
                 />
               ))}
             </div>
 
             <figcaption className="mt-4 min-h-[3.5rem]">
               <span className="font-display text-[1.25rem] text-[#4A1521]">
-                {stage.name}.
+                {current.name}.
               </span>{" "}
               <span className="text-[1.05rem] leading-relaxed text-[#55474A]">
-                {stage.caption}
+                {current.text}
               </span>
             </figcaption>
 
-            {/* The stages double as navigation — real information, not decoration */}
-            <nav aria-label="Publishing stages" className="mt-4">
-              <ol className="flex flex-wrap gap-x-5 gap-y-2 text-[0.95rem]">
-                {stages.map((s, i) => (
-                  <li key={s.name}>
-                    <button
-                      type="button"
-                      onClick={() => setActive(i)}
-                      aria-current={i === active ? "step" : undefined}
-                      className={
-                        "border-b-2 pb-1 outline-none transition-colors focus-visible:ring-2 focus-visible:ring-[#C59B27] " +
-                        (i === active
-                          ? "border-[#C59B27] text-[#4A1521]"
-                          : "border-transparent text-[#6E5D57] hover:text-[#4A1521]")
-                      }
-                    >
-                      {s.name}
-                    </button>
-                  </li>
-                ))}
-              </ol>
-            </nav>
+            <ol className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-[0.95rem]">
+              {slides.map((slide, i) => (
+                <li key={slide.name}>
+                  <button
+                    type="button"
+                    onClick={() => setActive(i)}
+                    className={`border-b-2 pb-1 outline-none transition-colors focus-visible:ring-2 focus-visible:ring-[#C59B27] ${
+                      i === active
+                        ? "border-[#4A1521] text-[#4A1521]"
+                        : "border-transparent text-[#6E5D57] hover:text-[#4A1521]"
+                    }`}
+                  >
+                    {slide.name}
+                  </button>
+                </li>
+              ))}
+            </ol>
           </figure>
         </div>
       </div>
